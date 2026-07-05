@@ -376,17 +376,42 @@ function App() {
   const fallbackPxPerCm = 4.8;
   const workingPxPerCm = exact ? pxPerCm : fallbackPxPerCm;
   const maxLetterHeightCm = Math.max(...lineHeightsCm);
-  const lineFontSizesPx = lineHeightsCm.map(h => Math.max(1, h * workingPxPerCm));
-  const letterHeightPx = Math.max(...lineFontSizesPx);
-  const measureTextWidthPx = (text: string, fontSizePx: number) => {
-    if (typeof document === 'undefined') return (text.trim().length || 1) * fontSizePx * 0.62;
+
+  // Точная высота букв после калибровки.
+  // Важно: font-size в браузере НЕ равен визуальной высоте буквы.
+  // Поэтому сначала измеряем реальные границы глифов через Canvas API,
+  // а затем подбираем такой font-size, чтобы видимая высота буквы
+  // соответствовала введённому размеру в сантиметрах.
+  const getGlyphMetrics = (text: string, fontSizePx: number) => {
+    if (typeof document === 'undefined') {
+      return { width: (text.trim().length || 1) * fontSizePx * 0.62, height: fontSizePx * 0.72 };
+    }
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
-    if (!ctx) return (text.trim().length || 1) * fontSizePx * 0.62;
+    if (!ctx) {
+      return { width: (text.trim().length || 1) * fontSizePx * 0.62, height: fontSizePx * 0.72 };
+    }
     ctx.font = `900 ${fontSizePx}px ${font}`;
-    const metrics = ctx.measureText(text || ' ');
-    return Math.max(1, metrics.width);
+    const metrics = ctx.measureText(text && text.trim() ? text : 'Вывеска');
+    const actualHeight = (metrics.actualBoundingBoxAscent || 0) + (metrics.actualBoundingBoxDescent || 0);
+    return {
+      width: Math.max(1, metrics.width),
+      height: Math.max(1, actualHeight || fontSizePx * 0.72)
+    };
   };
+
+  const resolveFontSizeForVisualHeight = (text: string, targetHeightPx: number) => {
+    const testSize = 100;
+    const measured = getGlyphMetrics(text, testSize).height;
+    const ratio = measured / testSize || 0.72;
+    return Math.max(1, targetHeightPx / ratio);
+  };
+
+  const lineTargetHeightsPx = lineHeightsCm.map(h => Math.max(1, h * workingPxPerCm));
+  const lineFontSizesPx = lines.map((line, i) => resolveFontSizeForVisualHeight(line, lineTargetHeightsPx[i]));
+  const letterHeightPx = Math.max(...lineTargetHeightsPx);
+
+  const measureTextWidthPx = (text: string, fontSizePx: number) => getGlyphMetrics(text, fontSizePx).width;
   const textLineWidthsPx = lines.map((line, i) => measureTextWidthPx(line, lineFontSizesPx[i]));
   const textWidthPx = Math.max(1, ...textLineWidthsPx);
   const logoWidthCm = logo ? logoHeightCm * logoAspect : 0;
