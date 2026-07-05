@@ -5,35 +5,165 @@ import jsPDF from 'jspdf';
 import './styles.css';
 
 type Point = { x: number; y: number };
-type Lighting = 'front' | 'back' | 'combo' | 'none';
+type Lighting = 'front' | 'side' | 'back' | 'frontBack' | 'frontSide' | 'none';
 type LogoPosition = 'left' | 'right';
 type ColorItem = [string, string, string];
+type FontItem = { name: string; family: string; sample: string; group: string };
 type DragMode = null | { type: 'sign'; dx: number; dy: number } | { type: 'point'; index: number } | { type: 'rotate'; angleOffset: number };
 
 const ORACAL_8500: ColorItem[] = [
-  ['010', 'White / Белый', '#ffffff'], ['020', 'Golden Yellow / Золотисто-жёлтый', '#ffc400'], ['021', 'Yellow / Жёлтый', '#ffdd00'], ['025', 'Brimstone Yellow / Серно-жёлтый', '#f4e600'],
-  ['030', 'Dark Red / Тёмно-красный', '#9e1827'], ['031', 'Red / Красный', '#d71928'], ['032', 'Light Red / Светло-красный', '#ef3340'], ['034', 'Orange / Оранжевый', '#ff7f18'],
-  ['036', 'Light Orange / Светло-оранжевый', '#ff9d23'], ['040', 'Violet / Фиолетовый', '#6c2a8d'], ['041', 'Pink / Розовый', '#e64b9b'], ['042', 'Lilac / Сиреневый', '#9b6bd3'],
-  ['047', 'Orange Red / Оранжево-красный', '#ff4425'], ['049', 'King Blue / Королевский синий', '#00377a'], ['050', 'Dark Blue / Тёмно-синий', '#003f87'], ['051', 'Gentian Blue / Синий', '#0057b8'],
-  ['052', 'Azure Blue / Лазурный', '#008fd3'], ['053', 'Light Blue / Светло-синий', '#58bce8'], ['056', 'Ice Blue / Ледяной синий', '#a8d9f3'], ['060', 'Dark Green / Тёмно-зелёный', '#007241'],
-  ['061', 'Green / Зелёный', '#00a651'], ['063', 'Lime-tree Green / Лайм', '#7ac143'], ['064', 'Yellow Green / Жёлто-зелёный', '#a7c900'], ['070', 'Black / Чёрный', '#111111'],
-  ['071', 'Grey / Серый', '#777777'], ['073', 'Dark Grey / Тёмно-серый', '#4d4d4d'], ['080', 'Brown / Коричневый', '#70401f'], ['082', 'Beige / Бежевый', '#d5b77e']
+  ['010', 'Белый / White', '#e7e8e5'],
+  ['025', 'Серно-жёлтый / Brimstone yellow', '#d1c600'],
+  ['021', 'Жёлтый / Yellow', '#ffcf00'],
+  ['013', 'Цинковый жёлтый / Zinc yellow', '#f3c300'],
+  ['020', 'Золотисто-жёлтый / Golden yellow', '#faad00'],
+  ['207', 'Охра жёлтая / Ochre yellow', '#e1a529'],
+  ['034', 'Оранжевый / Orange', '#e05400'],
+  ['330', 'Лисий красный / Fox red', '#c82411'],
+  ['323', 'Кораллово-красный / Coral red', '#d3273b'],
+  ['032', 'Светло-красный / Light red', '#cc311c'],
+  ['329', 'Гвоздично-красный / Carnation red', '#c3050e'],
+  ['016', 'Кроваво-красный / Crimson', '#cf110a'],
+  ['031', 'Красный / Red', '#c11c13'],
+  ['017', 'Вишнёвый / Cherry red', '#a5000e'],
+  ['030', 'Тёмно-красный / Dark red', '#770017'],
+  ['085', 'Бледно-розовый / Pale pink', '#df8e8f'],
+  ['413', 'Светло-розовый / Light pink', '#d361b1'],
+  ['041', 'Розовый / Pink', '#b3006a'],
+  ['008', 'Вересково-красный / Heather red', '#760630'],
+  ['040', 'Фиолетовый / Violet', '#64005c'],
+  ['403', 'Светло-фиолетовый / Light violet', '#5e2287'],
+  ['012', 'Сиреневый / Lilac', '#450357'],
+  ['527', 'Пастельно-синий / Pastel blue', '#5791ad'],
+  ['053', 'Светло-синий / Light blue', '#008ed5'],
+  ['052', 'Лазурный / Azure blue', '#0062b7'],
+  ['051', 'Генциановый синий / Gentian blue', '#0059ac'],
+  ['528', 'Серо-синий / Grey blue', '#00659d'],
+  ['005', 'Средний синий / Middle blue', '#0539a2'],
+  ['006', 'Интенсивный синий / Intensive blue', '#002d75'],
+  ['049', 'Королевский синий / King blue', '#24047b'],
+  ['542', 'Карибский синий / Caribic blue', '#142479'],
+  ['065', 'Кобальтовый синий / Cobalt blue', '#210066'],
+  ['007', 'Тёмно-синий / Dark blue', '#25235f'],
+  ['541', 'Тёмно-бирюзовый / Dark turquoise', '#005373'],
+  ['066', 'Бирюзово-синий / Turquoise blue', '#008b96'],
+  ['054', 'Бирюзовый / Turquoise', '#00ac92'],
+  ['062', 'Светло-зелёный / Light green', '#009935'],
+  ['063', 'Липово-зелёный / Lime-tree green', '#4ab600'],
+  ['009', 'Средний зелёный / Middle green', '#009d68'],
+  ['614', 'Камышовый зелёный / Reed green', '#007332'],
+  ['068', 'Травяной зелёный / Grass green', '#006e38'],
+  ['618', 'Драконово-зелёный / Dragon green', '#003f42'],
+  ['087', 'Изумрудный / Emerald', '#007832'],
+  ['060', 'Тёмно-зелёный / Dark green', '#003e29'],
+  ['070', 'Чёрный / Black', '#1b1d20'],
+  ['074', 'Средне-серый / Middle grey', '#878f8f'],
+  ['076', 'Телегрей / Telegrey', '#9ba1a7'],
+  ['072', 'Светло-серый / Light grey', '#c6c9ca'],
+  ['805', 'Слоновая кость / Ivory', '#e3d5b3'],
+  ['011', 'Бледно-коричневый / Pale brown', '#dfbb87'],
+  ['081', 'Светло-коричневый / Light brown', '#b48959'],
+  ['088', 'Кофейно-коричневый / Coffee brown', '#462921'],
+  ['090', 'Серебристо-серый / Silver grey', '#7d8184'],
+  ['091', 'Золото / Gold', '#907f44']
 ];
 
 const ORACAL_641: ColorItem[] = [
-  ['010', 'White / Белый', '#ffffff'], ['019', 'Signal Yellow / Сигнально-жёлтый', '#ffe600'], ['020', 'Golden Yellow / Золотисто-жёлтый', '#f7c600'], ['021', 'Yellow / Жёлтый', '#ffd900'], ['025', 'Brimstone Yellow / Серно-жёлтый', '#f3e500'],
-  ['030', 'Dark Red / Тёмно-красный', '#a20f1d'], ['031', 'Red / Красный', '#d71920'], ['032', 'Light Red / Светло-красный', '#ee2e24'], ['034', 'Orange / Оранжевый', '#f58220'], ['035', 'Pastel Orange / Пастельно-оранжевый', '#ff9f1c'],
-  ['040', 'Violet / Фиолетовый', '#6f2da8'], ['041', 'Pink / Розовый', '#f06292'], ['042', 'Lilac / Сиреневый', '#9c6ade'], ['043', 'Lavender / Лавандовый', '#8e7cc3'], ['045', 'Soft Pink / Мягкий розовый', '#f7a8c8'],
-  ['049', 'King Blue / Королевский синий', '#002f6c'], ['050', 'Dark Blue / Тёмно-синий', '#003f87'], ['051', 'Gentian Blue / Генциановый синий', '#0057b8'], ['052', 'Azure Blue / Лазурный', '#008bd2'], ['053', 'Light Blue / Светло-синий', '#5dade2'], ['056', 'Ice Blue / Ледяной синий', '#a7d8f0'],
-  ['060', 'Dark Green / Тёмно-зелёный', '#006b3f'], ['061', 'Green / Зелёный', '#009b48'], ['063', 'Lime-tree Green / Лайм', '#7ac143'], ['064', 'Yellow Green / Жёлто-зелёный', '#9acd32'],
-  ['070', 'Black / Чёрный', '#111111'], ['071', 'Grey / Серый', '#7a7a7a'], ['072', 'Light Grey / Светло-серый', '#b6b6b6'], ['073', 'Dark Grey / Тёмно-серый', '#4a4a4a'], ['074', 'Middle Grey / Средний серый', '#8a8a8a'],
-  ['080', 'Brown / Коричневый', '#6b3f22'], ['081', 'Light Brown / Светло-коричневый', '#9a6b3f'], ['082', 'Beige / Бежевый', '#d7b98c'], ['083', 'Nut Brown / Ореховый', '#7b4b2a'], ['090', 'Silver Grey / Серебро', '#bfc3c7'], ['091', 'Gold / Золото', '#c5a14a']
+  ['000', 'Прозрачный / Transparent', '#d5d5db'],
+  ['010', 'Белый / White', '#e7eaee'],
+  ['020', 'Золотисто-жёлтый / Golden yellow', '#fca600'],
+  ['019', 'Сигнально-жёлтый / Signal yellow', '#e8a700'],
+  ['021', 'Жёлтый / Yellow', '#fec600'],
+  ['022', 'Светло-жёлтый / Light yellow', '#f2cb00'],
+  ['025', 'Серно-жёлтый / Brimstone yellow', '#f1e10e'],
+  ['026', 'Пурпурно-красный / Purple red', '#571120'],
+  ['312', 'Бургунди / Burgundy', '#740210'],
+  ['030', 'Тёмно-красный / Dark red', '#910814'],
+  ['031', 'Красный / Red', '#af000b'],
+  ['032', 'Светло-красный / Light red', '#c70c00'],
+  ['047', 'Красно-оранжевый / Orange red', '#d33000'],
+  ['034', 'Оранжевый / Orange', '#dd4400'],
+  ['036', 'Светло-оранжевый / Light orange', '#ec6600'],
+  ['035', 'Пастельно-оранжевый / Pastel orange', '#ff6d00'],
+  ['404', 'Пурпурный / Purple', '#412872'],
+  ['040', 'Фиолетовый / Violet', '#5d2b68'],
+  ['043', 'Лавандовый / Lavender', '#785fa2'],
+  ['042', 'Сиреневый / Lilac', '#ba94bc'],
+  ['041', 'Малиновый / Pink', '#c3286a'],
+  ['045', 'Светло-розовый / Soft pink', '#ef87b8'],
+  ['562', 'Глубокий морской синий / Deep sea blue', '#131d39'],
+  ['518', 'Стальной синий / Steel blue', '#0f113a'],
+  ['050', 'Тёмно-синий / Dark blue', '#1c2f5e'],
+  ['065', 'Кобальтовый синий / Cobalt blue', '#0d1f6a'],
+  ['049', 'Королевский синий / King blue', '#172b79'],
+  ['086', 'Бриллиантово-синий / Brilliant blue', '#1b2faa'],
+  ['067', 'Синий / Blue', '#003a78'],
+  ['057', 'Дорожный синий / Traffic blue', '#00418e'],
+  ['051', 'Генциановый синий / Gentian blue', '#004583'],
+  ['098', 'Генциановый / Gentian', '#004f9f'],
+  ['052', 'Лазурный / Azure blue', '#005ead'],
+  ['084', 'Небесно-синий / Sky blue', '#0074bb'],
+  ['053', 'Светло-синий / Light blue', '#0088c3'],
+  ['056', 'Ледяной синий / Ice blue', '#43a2d3'],
+  ['066', 'Бирюзово-синий / Turquoise blue', '#00838e'],
+  ['054', 'Бирюзовый / Turquoise', '#009b97'],
+  ['055', 'Мятный / Mint', '#5fceb7'],
+  ['060', 'Тёмно-зелёный / Dark green', '#003c24'],
+  ['613', 'Лесной зелёный / Forest green', '#005236'],
+  ['061', 'Зелёный / Green', '#007a4d'],
+  ['068', 'Травяной зелёный / Grass green', '#00783f'],
+  ['062', 'Светло-зелёный / Light green', '#00893a'],
+  ['064', 'Жёлто-зелёный / Yellow green', '#239b11'],
+  ['063', 'Липово-зелёный / Lime-tree green', '#6aa72f'],
+  ['080', 'Коричневый / Brown', '#55331c'],
+  ['083', 'Орехово-коричневый / Nut brown', '#af591e'],
+  ['081', 'Светло-коричневый / Light brown', '#a8875a'],
+  ['082', 'Бежевый / Beige', '#cdc09e'],
+  ['023', 'Кремовый / Cream', '#e7d293'],
+  ['070', 'Чёрный / Black', '#060607'],
+  ['073', 'Тёмно-серый / Dark grey', '#4b4c4c'],
+  ['071', 'Серый / Grey', '#757d7c'],
+  ['076', 'Телегрей / Telegrey', '#808588'],
+  ['074', 'Средне-серый / Middle grey', '#8a8f8c'],
+  ['072', 'Светло-серый / Light grey', '#c0c3c3'],
+  ['090', 'Серебристо-серый / Silver grey', '#6f7274'],
+  ['091', 'Золото / Gold', '#796532'],
+  ['092', 'Медь / Copper', '#69401e']
 ];
 
-const FONTS = [
-  'Arial', 'Arial Black', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Georgia', 'Times New Roman', 'Courier New',
-  'Montserrat', 'Inter', 'Roboto', 'Open Sans', 'PT Sans', 'PT Serif', 'Rubik', 'Manrope', 'Nunito Sans', 'Oswald', 'Ubuntu',
-  'Merriweather', 'Playfair Display', 'Cormorant Garamond', 'Lora', 'Bebas Neue', 'Impact', 'Franklin Gothic Medium', 'Gill Sans', 'Century Gothic'
+const FONTS: FontItem[] = [
+  { name: 'Arial Black', family: 'Arial Black, Arial, sans-serif', sample: 'Вывеска', group: 'Системный' },
+  { name: 'Impact', family: 'Impact, Arial Black, sans-serif', sample: 'Вывеска', group: 'Системный' },
+  { name: 'Montserrat Black', family: 'Montserrat, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Inter ExtraBold', family: 'Inter, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Manrope ExtraBold', family: 'Manrope, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Roboto Black', family: 'Roboto, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Open Sans ExtraBold', family: 'Open Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Rubik Black', family: 'Rubik, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Noto Sans Black', family: 'Noto Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Source Sans 3 Black', family: 'Source Sans 3, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'IBM Plex Sans Bold', family: 'IBM Plex Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'PT Sans Bold', family: 'PT Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Fira Sans ExtraBold', family: 'Fira Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Jost ExtraBold', family: 'Jost, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Raleway Black', family: 'Raleway, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Nunito Sans Black', family: 'Nunito Sans, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Ubuntu Bold', family: 'Ubuntu, Arial, sans-serif', sample: 'Вывеска', group: 'Google Fonts' },
+  { name: 'Roboto Condensed Black', family: 'Roboto Condensed, Arial Narrow, sans-serif', sample: 'Вывеска', group: 'Узкие' },
+  { name: 'Oswald Bold', family: 'Oswald, Arial Narrow, sans-serif', sample: 'Вывеска', group: 'Узкие' },
+  { name: 'Bebas Neue', family: 'Bebas Neue, Impact, sans-serif', sample: 'ВЫВЕСКА', group: 'Узкие' },
+  { name: 'Russo One', family: 'Russo One, Arial Black, sans-serif', sample: 'Вывеска', group: 'Акцидентные' },
+  { name: 'Exo 2 ExtraBold', family: 'Exo 2, Arial, sans-serif', sample: 'Вывеска', group: 'Акцидентные' },
+  { name: 'Comfortaa Bold', family: 'Comfortaa, Arial, sans-serif', sample: 'Вывеска', group: 'Скруглённые' },
+  { name: 'Poiret One', family: 'Poiret One, Arial, sans-serif', sample: 'Вывеска', group: 'Тонкие' },
+  { name: 'Merriweather Black', family: 'Merriweather, Georgia, serif', sample: 'Вывеска', group: 'Антиква' },
+  { name: 'PT Serif Bold', family: 'PT Serif, Georgia, serif', sample: 'Вывеска', group: 'Антиква' },
+  { name: 'Noto Serif Black', family: 'Noto Serif, Georgia, serif', sample: 'Вывеска', group: 'Антиква' },
+  { name: 'Roboto Slab Black', family: 'Roboto Slab, Georgia, serif', sample: 'Вывеска', group: 'Брусковые' },
+  { name: 'Cormorant Garamond Bold', family: 'Cormorant Garamond, Georgia, serif', sample: 'Вывеска', group: 'Антиква' },
+  { name: 'Playfair Display Black', family: 'Playfair Display, Georgia, serif', sample: 'Вывеска', group: 'Антиква' },
+  { name: 'Yeseva One', family: 'Yeseva One, Georgia, serif', sample: 'Вывеска', group: 'Декоративные' },
+  { name: 'Lobster', family: 'Lobster, cursive', sample: 'Вывеска', group: 'Рукописные' }
 ];
 
 const cm = (value: number) => `${Math.round(value)} см`;
@@ -43,7 +173,7 @@ const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(ma
 const defaultState = {
   line1: 'Вывеска',
   line2: '',
-  font: 'Arial Black',
+  font: 'Arial Black, Arial, sans-serif',
   face: '#ffffff',
   side: '#333333',
   line1HeightCm: 30,
@@ -68,12 +198,18 @@ function maxLineLength(lines: string[]) {
 
 function lightingLabel(lighting: Lighting) {
   if (lighting === 'front') return 'Лицевая подсветка';
+  if (lighting === 'side') return 'Торцевая подсветка';
   if (lighting === 'back') return 'Контражур';
-  if (lighting === 'combo') return 'Лицевая + контражур';
+  if (lighting === 'frontBack') return 'Лицевая + контражур';
+  if (lighting === 'frontSide') return 'Лицевая + торцевая';
   return 'Без подсветки';
 }
 
 function optionLabel(c: ColorItem) { return `${c[0]} — ${c[1]}`; }
+function fontDisplayName(family: string) {
+  return FONTS.find(f => f.family === family)?.name || family.split(',')[0].replace(/['\"]/g, '').trim();
+}
+
 function colorName(list: ColorItem[], hex: string) {
   const found = list.find(c => c[2].toLowerCase() === hex.toLowerCase());
   if (!found) return hex;
@@ -84,6 +220,7 @@ function App() {
   const [line1, setLine1] = useState(defaultState.line1);
   const [line2, setLine2] = useState(defaultState.line2);
   const [font, setFont] = useState(defaultState.font);
+  const [fontOpen, setFontOpen] = useState(false);
   const [face, setFace] = useState(defaultState.face);
   const [side, setSide] = useState(defaultState.side);
   const [line1HeightCm, setLine1HeightCm] = useState(defaultState.line1HeightCm);
@@ -197,8 +334,38 @@ function App() {
   const textHeightCm = twoLines ? Math.round(line1HeightCm * 0.95 + line2HeightCm * 0.95 + Math.max(3, Math.min(line1HeightCm, line2HeightCm) * 0.18)) : line1HeightCm;
   const signHeightCm = Math.round(Math.max(textHeightCm, logo ? logoHeightCm : 0));
   const signHeightPx = exact ? signHeightCm * pxPerCm : Math.max(twoLines ? 124 : 64, logo ? (logoHeightCm / Math.max(1, maxLetterHeightCm)) * 64 : 0);
-  const sideDepthPx = Math.max(1.2, letterHeightPx * 0.035);
-  const glow = lighting === 'none' ? 'none' : lighting === 'back' ? `0 0 ${letterHeightPx * 0.55}px ${face}` : lighting === 'combo' ? `0 0 ${letterHeightPx * 0.52}px ${face}, ${sideDepthPx}px ${sideDepthPx}px ${sideDepthPx * 1.5}px rgba(0,0,0,.45)` : `0 0 ${letterHeightPx * 0.38}px ${face}`;
+  const sideDepthPx = Math.max(1.2, letterHeightPx * 0.028);
+  const darkFace = '#080a0d';
+  const darkSide = '#050609';
+  const shadowSide = '#111318';
+  const lightingTextStyle = (fs: number) => {
+    const strokeBase = Math.max(0.7, fs * 0.014);
+    if (!night) {
+      return {
+        color: face,
+        textShadow: `${sideDepthPx}px ${sideDepthPx}px 0 ${side}, ${sideDepthPx * 1.25}px ${sideDepthPx * 1.35}px ${sideDepthPx}px rgba(0,0,0,.28)`,
+        WebkitTextStroke: `${strokeBase}px ${side}`
+      } as React.CSSProperties;
+    }
+    const faceGlow = `0 0 ${fs * 0.18}px ${face}, 0 0 ${fs * 0.38}px ${face}`;
+    const sideGlow = `0 0 ${fs * 0.16}px ${side}, 0 0 ${fs * 0.32}px ${side}`;
+    const backHalo = `0 0 ${fs * 0.48}px ${face}, 0 0 ${fs * 0.78}px ${face}`;
+    if (lighting === 'front') return { color: face, textShadow: faceGlow, WebkitTextStroke: `${strokeBase}px ${darkSide}` } as React.CSSProperties;
+    if (lighting === 'side') return { color: darkFace, textShadow: sideGlow, WebkitTextStroke: `${Math.max(1.2, strokeBase * 1.75)}px ${side}` } as React.CSSProperties;
+    if (lighting === 'back') return { color: darkFace, textShadow: backHalo, WebkitTextStroke: `${strokeBase}px ${shadowSide}` } as React.CSSProperties;
+    if (lighting === 'frontBack') return { color: face, textShadow: `${faceGlow}, ${backHalo}`, WebkitTextStroke: `${strokeBase}px ${darkSide}` } as React.CSSProperties;
+    if (lighting === 'frontSide') return { color: face, textShadow: `${faceGlow}, ${sideGlow}`, WebkitTextStroke: `${Math.max(1, strokeBase * 1.45)}px ${side}` } as React.CSSProperties;
+    return { color: '#11151b', textShadow: 'none', WebkitTextStroke: `${strokeBase}px #07090c` } as React.CSSProperties;
+  };
+  const logoLightingFilter = (basePx: number, depthPx: number) => {
+    if (!night) return `drop-shadow(${depthPx}px ${depthPx}px 0 ${side}) drop-shadow(${depthPx * 1.2}px ${depthPx * 1.2}px ${depthPx}px rgba(0,0,0,.26))`;
+    if (lighting === 'front') return `drop-shadow(0 0 ${basePx * 0.22}px ${face}) drop-shadow(${depthPx}px ${depthPx}px 0 ${darkSide})`;
+    if (lighting === 'side') return `brightness(.14) drop-shadow(0 0 ${basePx * 0.24}px ${side}) drop-shadow(${depthPx}px ${depthPx}px 0 ${side})`;
+    if (lighting === 'back') return `brightness(.10) drop-shadow(0 0 ${basePx * 0.58}px ${face}) drop-shadow(0 0 ${basePx * 0.95}px ${face})`;
+    if (lighting === 'frontBack') return `drop-shadow(0 0 ${basePx * 0.24}px ${face}) drop-shadow(0 0 ${basePx * 0.62}px ${face}) drop-shadow(${depthPx}px ${depthPx}px 0 ${darkSide})`;
+    if (lighting === 'frontSide') return `drop-shadow(0 0 ${basePx * 0.24}px ${face}) drop-shadow(0 0 ${basePx * 0.24}px ${side}) drop-shadow(${depthPx}px ${depthPx}px 0 ${side})`;
+    return 'brightness(.08) contrast(.9)';
+  };
 
   const onFacade = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]; if (!file) return;
@@ -286,9 +453,7 @@ function App() {
     const heightPx = signHeightPx * scale;
     const logoHeightPx = (exact ? logoHeightCm * pxPerCm : (logoHeightCm / Math.max(1, line1HeightCm)) * 64) * scale;
     const depthPx = sideDepthPx * scale;
-    const textShadow = night
-      ? glow
-      : `${depthPx}px ${depthPx}px 0 ${side}, ${depthPx * 1.25}px ${depthPx * 1.35}px ${depthPx}px rgba(0,0,0,.28)`;
+    const logoFilter = logoLightingFilter(Math.max(logoHeightPx, fontSize), depthPx);
     return <div
       className={(pdfMode ? 'sign signPdf' : 'sign') + (drawingMode ? ' drawingSign' : '')}
       style={{
@@ -310,8 +475,11 @@ function App() {
       }}>↻</button>}
       <svg className="signDims" width={widthPx + 76} height={heightPx + 88} viewBox={`0 0 ${widthPx + 76} ${heightPx + 88}`}>
         <defs>
-          <marker id={`arrow-${pdfMode ? 'pdf' : 'live'}`} markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
-            <path d="M0,0 L7,3.5 L0,7 Z" fill="#ff6a00"/>
+          <marker id={`arrow-start-${pdfMode ? 'pdf' : 'live'}`} markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#ff6a00"/>
+          </marker>
+          <marker id={`arrow-end-${pdfMode ? 'pdf' : 'live'}`} markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#ff6a00"/>
           </marker>
         </defs>
         {drawingMode && <>
@@ -320,15 +488,15 @@ function App() {
           <line className="dimExt" x1={widthPx + 10} y1="48" x2={widthPx + 30} y2="48" />
           <line className="dimExt" x1={widthPx + 10} y1={heightPx + 48} x2={widthPx + 30} y2={heightPx + 48} />
         </>}
-        <line x1="10" y1="26" x2={widthPx + 10} y2="26" markerStart={`url(#arrow-${pdfMode ? 'pdf' : 'live'})`} markerEnd={`url(#arrow-${pdfMode ? 'pdf' : 'live'})`} />
+        <line x1="10" y1="26" x2={widthPx + 10} y2="26" markerStart={`url(#arrow-start-${pdfMode ? 'pdf' : 'live'})`} markerEnd={`url(#arrow-end-${pdfMode ? 'pdf' : 'live'})`} />
         <text x={widthPx / 2 + 10} y="18" textAnchor="middle">{cm(signWidthCm)}</text>
-        <line x1={widthPx + 30} y1="48" x2={widthPx + 30} y2={heightPx + 48} markerStart={`url(#arrow-${pdfMode ? 'pdf' : 'live'})`} markerEnd={`url(#arrow-${pdfMode ? 'pdf' : 'live'})`} />
+        <line x1={widthPx + 30} y1="48" x2={widthPx + 30} y2={heightPx + 48} markerStart={`url(#arrow-start-${pdfMode ? 'pdf' : 'live'})`} markerEnd={`url(#arrow-end-${pdfMode ? 'pdf' : 'live'})`} />
         <text x={widthPx + 52} y={heightPx / 2 + 54} textAnchor="middle" transform={`rotate(90 ${widthPx + 52} ${heightPx / 2 + 54})`}>{cm(signHeightCm)}</text>
       </svg>
-      <div className="letters" style={{ fontFamily: font, color: face, fontSize, textShadow }}>
-        {logo && logoPosition === 'left' && <img className="logo" src={logo} draggable={false} style={{ height: logoHeightPx, filter: night ? `drop-shadow(0 0 ${Math.max(logoHeightPx, fontSize) * 0.34}px ${face}) drop-shadow(${depthPx}px ${depthPx}px 0 ${side})` : `drop-shadow(${depthPx}px ${depthPx}px 0 ${side}) drop-shadow(${depthPx * 1.2}px ${depthPx * 1.2}px ${depthPx}px rgba(0,0,0,.26))` }}/>} 
-        <div className="textBlock">{lines.map((line, i) => <span key={i} style={{ fontSize: fontSizes[i], WebkitTextStroke: `${Math.max(0.7, fontSizes[i] * 0.014)}px ${side}` }}>{line}</span>)}</div>
-        {logo && logoPosition === 'right' && <img className="logo logoRight" src={logo} draggable={false} style={{ height: logoHeightPx, filter: night ? `drop-shadow(0 0 ${Math.max(logoHeightPx, fontSize) * 0.34}px ${face}) drop-shadow(${depthPx}px ${depthPx}px 0 ${side})` : `drop-shadow(${depthPx}px ${depthPx}px 0 ${side}) drop-shadow(${depthPx * 1.2}px ${depthPx * 1.2}px ${depthPx}px rgba(0,0,0,.26))` }}/>} 
+      <div className="letters" style={{ fontFamily: font, fontSize }} data-lighting={lighting}>
+        {logo && logoPosition === 'left' && <img className="logo" src={logo} draggable={false} style={{ height: logoHeightPx, filter: logoFilter }}/>} 
+        <div className="textBlock">{lines.map((line, i) => <span key={i} style={{ fontSize: fontSizes[i], ...lightingTextStyle(fontSizes[i]) }}>{line}</span>)}</div>
+        {logo && logoPosition === 'right' && <img className="logo logoRight" src={logo} draggable={false} style={{ height: logoHeightPx, filter: logoFilter }}/>} 
       </div>
     </div>;
   };
@@ -339,7 +507,6 @@ function App() {
     <header className="topbar">
       <div className="brand"><b>РЕКЛАМА<span>СТРОЙ</span></b><small>онлайн примерка вывески</small></div>
       <div className="heroTitle"><h1>Онлайн примерка вывески с привязкой к фасаду здания</h1><p>Загрузите фасад, задайте масштаб по 2 точкам и подберите вывеску в размере.</p></div>
-      <button className="primaryExport" onClick={pdf}>Скачать PDF</button>
     </header>
 
     <main className="app">
@@ -351,14 +518,26 @@ function App() {
         <div className="sectionBadge">2 · Масштаб</div>
         <div className="hintBox"><b>Поставьте 2 точки</b><span>Отметьте известный размер на фото: ширину окна, двери или витрины. Точки можно двигать мышкой.</span></div>
         <button className={placingPoints ? 'active' : ''} onClick={() => setPlacingPoints(v => !v)}>{placingPoints ? 'Кликните 2 точки на фото' : 'Калибровать по 2 точкам'}</button>
-        <button className={!placingPoints ? 'moveSignBtn active' : 'moveSignBtn'} onClick={() => setPlacingPoints(false)}>Перемещать вывеску</button>
+        <button className="resetPointsBtn" onClick={() => setPoints([])}>Сбросить точки</button>
         <label>Фактический размер между точками, см<input type="number" value={calibrationCm} onChange={e => setCalibrationCm(Number(e.target.value) || 1)} /></label>
 
         <div className="sectionBadge">3 · Вывеска</div>
         <label>Текст первой строки<input value={line1} onChange={e => setLine1(e.target.value)} /></label>
         <label className="check"><input type="checkbox" checked={twoLines} onChange={e => setTwoLines(e.target.checked)} /> Добавить вторую строку</label>
         {twoLines && <label>Текст второй строки<input value={line2} onChange={e => setLine2(e.target.value)} /></label>}
-        <label>Шрифт<select value={font} onChange={e => setFont(e.target.value)}>{FONTS.map(f => <option key={f}>{f}</option>)}</select></label>
+        <label>Шрифт</label>
+        <div className="fontDropdown">
+          <button className="fontCurrent" type="button" onClick={() => setFontOpen(v => !v)}>
+            <span className="fontMeta"><b>{fontDisplayName(font)}</b><small>Нажмите, чтобы выбрать шрифт</small></span>
+            <span className="fontPreview" style={{ fontFamily: font }}>{line1 || 'Вывеска'}</span>
+          </button>
+          {fontOpen && <div className="fontMenu">
+            {FONTS.map(f => <button type="button" key={f.name} className={font === f.family ? 'selected' : ''} onClick={() => { setFont(f.family); setFontOpen(false); }}>
+              <span><b>{f.name}</b><small>{f.group}</small></span>
+              <em style={{ fontFamily: f.family }}>{f.sample}</em>
+            </button>)}
+          </div>}
+        </div>
         <label>Высота первой строки, см<input type="number" value={line1HeightCm} onChange={e => setLine1HeightCm(Number(e.target.value) || 1)} /></label>
         {twoLines && <label>Высота второй строки, см<input type="number" value={line2HeightCm} onChange={e => setLine2HeightCm(Number(e.target.value) || 1)} /></label>}
         <label className="file secondary">Добавить свой логотип<input key={logoInputKey} type="file" accept="image/svg+xml,image/png" onChange={onLogo}/></label><small className="tip">Логотип: только SVG или PNG с прозрачным фоном.</small>
@@ -374,20 +553,21 @@ function App() {
         <label>Тип подсветки
           <select value={lighting} onChange={e => setLighting(e.target.value as Lighting)}>
             <option value="front">Лицевая подсветка</option>
+            <option value="side">Торцевая подсветка</option>
             <option value="back">Контражур</option>
-            <option value="combo">Лицевая + контражур</option>
+            <option value="frontBack">Лицевая + контражур</option>
+            <option value="frontSide">Лицевая + торцевая</option>
             <option value="none">Без подсветки</option>
           </select>
         </label>
 
         <div className="summaryCard leftSummary"><b>Габариты</b><span>Длина: {cm(signWidthCm)}</span><span>Высота: {cm(signHeightCm)}</span><span>1 строка: {cm(line1HeightCm)}</span>{twoLines && <span>2 строка: {cm(line2HeightCm)}</span>}{logo && <span>Высота логотипа: {cm(logoHeightCm)}</span>}<span>Подсветка: {lightingLabel(lighting)}</span></div>
+        <button className="panelPdfButton" onClick={pdf}>Скачать PDF</button>
       </aside>
 
       <section className="workspace">
         <div className="toolbar">
           <div className="modeSwitch"><button onClick={() => setNight(false)} className={!night ? 'active' : ''}>☀ День</button><button onClick={() => setNight(true)} className={night ? 'active' : ''}>🌙 Ночь</button></div>
-          <button onClick={() => setPoints([])}>Сбросить точки</button>
-          <button className="toolbarPdf" onClick={pdf}>Скачать PDF</button>
         </div>
         <div className={'stage ' + (night ? 'night' : '')} ref={stageRef} onClick={clickStage}>
           {facade ? <img src={facade} className="facade"/> : <div className="placeholder"><b>Загрузите фото фасада</b><span>Затем откалибруйте масштаб по двум точкам</span></div>}
@@ -431,7 +611,7 @@ function App() {
             <div className="pdfWatermark drawing">РекламаСтрой</div>
           </div>
           <aside className="pdfSpec">
-            <b>ШРИФТ:</b><span>{font}</span>
+            <b>ШРИФТ:</b><span>{fontDisplayName(font)}</span>
             <b>ЦВЕТ ЛИЦЕВОЙ ЧАСТИ:</b><span><i style={{background: face}}></i>{colorName(ORACAL_8500, face)}</span>
             <b>ЦВЕТ ТОРЦЕВОЙ ЧАСТИ:</b><span><i style={{background: side}}></i>{colorName(ORACAL_641, side)}</span>
           </aside>
