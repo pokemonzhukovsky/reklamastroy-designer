@@ -1,0 +1,3187 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@400;700;900&family=Anton&family=Amatic+SC:wght@400;700&family=Bad+Script&family=Balsamiq+Sans:wght@400;700&family=Brygada+1918:wght@400;700&family=Caveat:wght@400;700&family=Fira+Sans+Extra+Condensed:wght@400;700;900&family=Kelly+Slab&family=Kurale&family=Lobster&family=Marck+Script&family=Montserrat+Alternates:wght@400;700;900&family=Neucha&family=Pacifico&family=Pangolin&family=Rubik+Mono+One&family=Tenor+Sans&family=Viaoda+Libre&family=Vollkorn:wght@400;700;900&family=Yanone+Kaffeesatz:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700;900&family=Alegreya+Sans:wght@400;700;900&family=Anonymous+Pro:wght@400;700&family=Arimo:wght@400;700&family=Arsenal:wght@400;700&family=Bellota+Text:wght@400;700&family=Bebas+Neue&family=Bitter:wght@400;700;900&family=Comfortaa:wght@400;700&family=Commissioner:wght@400;700;900&family=Cormorant:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=Cousine:wght@400;700&family=Cuprum:wght@400;700&family=Didact+Gothic&family=EB+Garamond:wght@400;700&family=El+Messiri:wght@400;700&family=Exo+2:wght@400;700;900&family=Fira+Sans:wght@400;700;900&family=Forum&family=Geologica:wght@400;700;900&family=Golos+Text:wght@400;700;900&family=Golos+UI:wght@400;700;900&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@400;700&family=Inter:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700;900&family=Jura:wght@400;700&family=Literata:wght@400;700&family=Lora:wght@400;700&family=Manrope:wght@400;700;900&family=Marmelad&family=Merriweather:wght@400;700;900&family=Montserrat:wght@400;500;600;700;900&family=Mulish:wght@400;700;900&family=Noto+Sans:wght@400;700;900&family=Noto+Sans+Mono:wght@400;700&family=Noto+Serif:wght@400;700;900&family=Nunito+Sans:wght@400;700;900&family=Old+Standard+TT:wght@400;700&family=Onest:wght@400;700;900&family=Open+Sans:wght@400;700;800&family=Oranienbaum&family=Orelega+One&family=Oswald:wght@400;700&family=PT+Mono&family=PT+Sans:wght@400;700&family=PT+Sans+Caption:wght@400;700&family=PT+Serif:wght@400;700&family=Philosopher:wght@400;700&family=Play:wght@400;700&family=Playfair+Display:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Prata&family=Raleway:wght@400;700;900&family=Roboto:wght@400;700;900&family=Roboto+Condensed:wght@400;700;800;900&family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700;900&family=Rubik:wght@400;700;900&family=Russo+One&family=Scada:wght@400;700&family=Sofia+Sans:wght@400;700;900&family=Source+Sans+3:wght@400;700;900&family=Tektur:wght@400;700;900&family=Ubuntu:wght@400;700&family=Unbounded:wght@400;700;900&family=Yeseva+One&display=swap');
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#edf1f5;color:#20242a}button,input,select{font:inherit}button{cursor:pointer}.topbar{height:86px;background:#fff;border-bottom:1px solid #dfe5ec;display:flex;align-items:center;gap:22px;padding:14px 22px;position:sticky;top:0;z-index:50;box-shadow:0 10px 28px rgba(31,42,55,.08)}.brand{min-width:185px}.brand b{font-size:22px;letter-spacing:-.03em}.brand span{color:#ff6a00}.brand small{display:block;color:#6b7784;font-size:12px;margin-top:3px}.heroTitle{flex:1;min-width:0}.heroTitle h1{margin:0;font-size:23px;letter-spacing:-.03em}.heroTitle p{margin:6px 0 0;color:#697580;font-size:13px}.primaryExport,.toolbarPdf{background:#ff6a00;color:#fff;border:0;border-radius:14px;padding:14px 20px;font-weight:900;box-shadow:0 14px 30px rgba(255,106,0,.25)}.app{height:calc(100vh - 86px);display:grid;grid-template-columns:330px 1fr;gap:0}.panel{background:#fff;border-right:1px solid #dfe5ec;padding:16px;overflow:auto}.panel.right{display:none}.panel.compact{padding:16px}.sectionBadge{display:inline-flex;align-items:center;background:#f2f5f8;border:1px solid #e0e6ed;color:#3a4652;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;margin:10px 0}.hintBox{background:#fff8ef;border:1px solid #f0d5b8;border-radius:16px;padding:12px;margin:8px 0 14px}.hintBox b{display:block;margin-bottom:5px}.hintBox span,.tip{display:block;color:#65717d;font-size:12px;line-height:1.35}.file,button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle){display:block;width:100%;border:1px solid #d8e0e8;background:#fff;border-radius:14px;padding:13px 14px;font-weight:850;text-align:center;margin:8px 0}.file{background:#20242a;color:#fff;border-color:#20242a}.file.secondary{background:#fff;color:#20242a}.file input{display:none}label{display:block;margin:10px 0;color:#3d4650;font-weight:800;font-size:13px}input,select{width:100%;border:1px solid #d6dee7;background:#fff;border-radius:12px;padding:12px;margin-top:6px;color:#20242a}.check{display:flex;gap:8px;align-items:center}.check input{width:auto}.status{padding:12px;border-radius:14px;margin:12px 0;font-weight:850;font-size:13px}.ok{background:#e8f8ef;color:#147e38}.warn{background:#fff1db;color:#9a5b00}.savePill{display:inline-flex;background:#eaf8ef;color:#16833a;border:1px solid #bfe8ca;border-radius:999px;padding:8px 11px;font-weight:850;font-size:12px;margin-bottom:8px}.colorSelect{position:relative}.colorSelect select{padding-left:46px}.colorSelect i{position:absolute;left:12px;bottom:12px;width:24px;height:24px;border:1px solid rgba(0,0,0,.22);border-radius:8px}.workspace{display:flex;flex-direction:column;min-width:0}.toolbar{min-height:68px;background:#fff;border-bottom:1px solid #dfe5ec;display:flex;align-items:center;gap:12px;padding:10px 14px}.toolbar button:not(.toolbarPdf){width:auto;margin:0;padding:11px 14px}.modeSwitch{display:flex;gap:8px;background:#111822;border-radius:16px;padding:5px}.modeSwitch button{width:auto;margin:0;border:0;background:transparent;color:#cbd5e1;border-radius:12px;padding:11px 17px;font-weight:900}.modeSwitch button.active{background:#ff6a00;color:#fff;box-shadow:0 8px 18px rgba(255,106,0,.28)}.miniInfo{margin-left:auto;background:#f7f9fb;border:1px solid #d9e0e7;border-radius:999px;padding:10px 13px;font-weight:850;font-size:13px}.stage{position:relative;flex:1;overflow:hidden;background:#cfd6dd;min-height:580px;margin:14px;border-radius:20px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 14px 36px rgba(31,42,55,.12)}.stage.night{background:#050914}.stage.night .facade{filter:brightness(.2) contrast(1.1) saturate(.75)}.stage.night:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.04),rgba(0,0,0,.28) 45%,rgba(0,0,0,.58));pointer-events:none;z-index:1}.facade{width:100%;height:100%;object-fit:cover;display:block}.placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:24px;color:#74808c;background:linear-gradient(135deg,#f8fafc,#e8eef5)}.placeholder span{font-size:14px}.point{position:absolute;width:6px;height:6px;border-radius:50%;background:#ff6a00;border:1px solid #fff;transform:translate(-50%,-50%);z-index:15;box-shadow:0 4px 10px rgba(255,106,0,.35);cursor:grab;user-select:none}.point:hover{outline:2px solid rgba(255,106,0,.28)}.point:active{cursor:grabbing}.measure{position:absolute;inset:0;pointer-events:none;z-index:10}.measure line{stroke:#ff6a00;stroke-width:1.3}.measure text{fill:#111;stroke:#fff;stroke-width:4;paint-order:stroke;font-size:16px;font-weight:900}.sign{position:absolute;transform-origin:0 50%;z-index:12;cursor:grab;user-select:none;touch-action:none}.sign:active{cursor:grabbing}.letters{position:relative;z-index:2;display:flex;align-items:center;justify-content:flex-start;gap:.16em;font-weight:900;line-height:.9;white-space:nowrap;letter-spacing:.01em;filter:saturate(1.04);pointer-events:none}.letters span{display:block;filter:drop-shadow(0 8px 12px rgba(0,0,0,.1))}.textBlock{display:flex;flex-direction:column;align-items:flex-start}.logo{object-fit:contain;margin-right:.12em;max-width:38%;pointer-events:none}.rotateHandle{position:absolute;left:50%;top:-54px;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;border:2px solid #fff;background:#ff6a00;color:#fff;font-size:20px;font-weight:900;box-shadow:0 10px 22px rgba(255,106,0,.3);z-index:30;cursor:grab}.rotateHandle:active{cursor:grabbing}.signDims{position:absolute;left:-70px;top:-42px;overflow:visible;z-index:4;pointer-events:none}.signDims line{stroke:#ff6a00;stroke-width:1.2}.signDims text{font-size:14px;font-weight:900;fill:#111;stroke:#fff;stroke-width:4;paint-order:stroke}.lightingCards{display:grid;grid-template-columns:1fr;gap:10px}.lightingCards button{background:#fff;border:1px solid #d5dde5;border-radius:16px;padding:10px;cursor:pointer;display:flex;gap:10px;align-items:center;text-align:left;color:#20242a;margin:0}.lightingCards button.active{outline:2px solid #ff6a00;background:#fff7ef}.sampleA{width:42px;height:42px;border-radius:12px;background:#151b24;display:flex;align-items:center;justify-content:center;font-size:32px;font-family:Arial Black,Arial;font-weight:900;-webkit-text-stroke:1px #222}.sampleA.front{text-shadow:0 0 16px currentColor}.sampleA.back{box-shadow:0 0 18px currentColor;text-shadow:4px 4px 0 #333}.sampleA.combo{box-shadow:0 0 18px currentColor;text-shadow:0 0 14px currentColor,4px 4px 0 #333}.sampleA.none{text-shadow:4px 4px 0 #333}.summaryCard{margin-top:16px;background:#f7f9fb;border:1px solid #dfe5ec;border-radius:18px;padding:14px}.summaryCard b,.summaryCard span{display:block}.summaryCard span{margin-top:8px;color:#56616c;font-size:13px}.pdfPage{position:fixed;left:-99999px;top:0;width:1122px;height:794px;background:#fff;padding:24px;font-family:Arial,sans-serif}.pdfHeader{display:flex;justify-content:space-between;border-bottom:2px solid #ff6a00;padding-bottom:10px;font-size:18px}.pdfHeader b{font-size:28px}.pdfHeader span{color:#ff6a00}.pdfStageWrap{position:relative;width:980px;height:540px;margin:16px auto 0;border:1px solid #d6dce3;overflow:hidden;background:#d7dde3}.pdfStageWrap .sign{cursor:default}.pdfPoint{z-index:20}.pdfTable{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:16px 40px 0;font-size:16px}.pdfTable div{background:#f4f6f8;border:1px solid #dfe5ec;border-radius:8px;padding:9px 10px}.watermark{position:absolute;left:250px;top:330px;font-size:76px;color:rgba(0,0,0,.045);transform:rotate(-18deg);font-weight:900;pointer-events:none}.signPdf .signDims line{stroke-width:1}.signPdf .signDims text{font-size:12px}@media(max-width:1180px){.app{grid-template-columns:310px 1fr}.right{display:none}.toolbarPdf{display:block}}@media(max-width:900px){.app{display:block;height:auto}.stage{height:560px}.topbar{height:auto;flex-wrap:wrap}.heroTitle{order:3;flex-basis:100%}.panel{border-right:0}.primaryExport{width:100%}}
+
+/* PDF commercial template v3.4 */
+.pdfPages{position:fixed;left:-99999px;top:0;width:1122px;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#333}.pdfSheet{position:relative;width:1122px;height:794px;background:#fff;border:1px solid #cfcfcf;overflow:hidden}.pdfSheet+.pdfSheet{margin-top:20px}.pdfTopHeader{height:108px;display:grid;grid-template-columns:270px 118px 118px 176px 194px 210px;align-items:stretch;gap:0;padding:16px 18px;border-bottom:1px solid #cfcfcf}.pdfLogoBlock{display:flex;align-items:center;gap:10px;border-right:1px solid #ccc;height:76px;padding:0 12px 0 0;overflow:hidden}.pdfLogoBlock img{width:64px;height:64px;object-fit:contain;flex:0 0 auto}.pdfLogoBlock b{font-size:28px;letter-spacing:-.04em;color:#3b3b3b;white-space:nowrap}.pdfLogoBlock b span{color:#ff5a00}.pdfLogoBlock small{display:block;margin-top:5px;font-size:10px;font-weight:700;color:#222;line-height:1.15;white-space:normal}.pdfTrust{height:76px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 8px;border-right:1px solid #ccc;overflow:hidden}.pdfTrust i{font-style:normal;color:#ff5a00;font-weight:900;font-size:26px;line-height:1;flex:0 0 auto;text-align:center}.pdfTrust span{font-size:10.5px;font-weight:800;line-height:1.12;color:#333;text-align:left;display:block}.pdfTrust b{display:block;font-size:17px;line-height:1.05;white-space:nowrap}.pdfContact{height:76px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;padding:0 12px;border-right:1px solid #ccc;font-size:12.5px;font-weight:700;line-height:1.15;overflow:hidden;white-space:nowrap}.pdfContact:last-child{border-right:0}.pdfContact.phones{font-size:13.5px;font-weight:800;letter-spacing:-.02em;padding-left:14px}.pdfFacadeCenter{height:603px;display:flex;align-items:center;justify-content:center;padding:16px 44px 52px}.pdfFacadeStage{position:relative;width:845px;height:500px;background:#eef1f3;overflow:hidden}.pdfFacadeStage .facade{width:100%;height:100%;object-fit:cover}.pdfFacadeStage .sign{cursor:default}.pdfWatermark{position:absolute;left:72px;top:210px;font-size:82px;font-weight:900;color:rgba(255,90,0,.17);transform:rotate(-18deg);pointer-events:none;white-space:nowrap;letter-spacing:.04em}.pdfWatermark.drawing{left:110px;top:212px;color:rgba(255,90,0,.13)}.pdfNote{position:absolute;left:0;right:0;bottom:0;height:38px;border-top:1px solid #d6d6d6;display:flex;align-items:center;justify-content:center;font-size:13px;color:#333}.pdfSheetTitle{margin:18px 0 0 0;font-size:24px;color:#333;text-align:center;font-weight:800;letter-spacing:-.02em}.pdfSheetDrawing h2{margin:18px 0 0 0;font-size:24px;color:#333;text-align:center}.pdfDrawingGrid{display:grid;grid-template-columns:1fr 230px;gap:24px;height:660px;padding:20px 26px 54px}.pdfDrawingStage{position:relative;display:flex;align-items:center;justify-content:center;overflow:visible}.pdfDrawingStage .sign{position:relative!important;left:auto!important;top:auto!important;cursor:default;transform-origin:center center!important}.pdfSpec{padding-top:56px;font-size:13px;color:#222}.pdfSpec b{display:block;margin-top:18px;font-size:13px}.pdfSpec span{display:flex;align-items:center;gap:8px;margin-top:5px;text-transform:uppercase;font-size:12px}.pdfSpec i{width:14px;height:14px;border:1px solid #999;display:inline-block}.pdfSheet .signDims line{stroke:#ff5a00;stroke-width:1.15}.pdfSheet .signDims text{fill:#ff5a00;stroke:#fff;stroke-width:4;font-size:16px;font-weight:900;paint-order:stroke}.pdfSheet .signDims path{fill:#ff5a00}.pdfSheet .letters{filter:none}.pdfSheet .rotateHandle{display:none!important}
+
+.leftSummary{margin-top:12px}
+
+/* PDF stability patch v3.7 */
+body.pdf-exporting .point,
+body.pdf-exporting .rotateHandle,
+body.pdf-exporting .toolbar,
+body.pdf-exporting .miniInfo{display:none!important}
+body.pdf-exporting .stage{box-shadow:none!important;border-radius:0!important;margin:0!important}
+.snapshotStage{display:flex;align-items:center;justify-content:center;background:#fff!important}
+.stageSnapshot{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.pdfDrawingStage{align-items:center!important;justify-content:center!important;padding:0 20px 0 20px}
+.pdfDrawingStage .drawingSign{position:relative!important;left:auto!important;top:auto!important;transform:rotate(0deg)!important;transform-origin:center center!important;margin:auto!important}
+.pdfDrawingStage .drawingSign .signDims{left:-70px!important;top:-44px!important}
+.pdfSheet .signDims line{stroke:#ff5a00!important;stroke-width:1.05!important}
+.pdfSheet .signDims text{fill:#ff5a00!important;font-size:17px!important;font-weight:900!important;stroke:#fff!important;stroke-width:5!important;paint-order:stroke!important}
+.pdfSheet .signDims path{fill:#ff5a00!important}
+.pdfFacadeStage .pdfWatermark{z-index:4}
+.logoRight{margin-right:0;margin-left:.12em}
+
+/* interaction clarity patch v3.10 */
+.moveSignBtn{background:#f4f6f8!important;color:#20242a!important;border:1px solid #d5dde5!important}
+.moveSignBtn.active{background:#20242a!important;color:#fff!important;border-color:#20242a!important}
+.rotateHandle{top:auto;bottom:auto}
+.sign{will-change:transform,left,top}
+.stage:not(.night) .sign:hover .rotateHandle{box-shadow:0 10px 22px rgba(255,106,0,.42),0 0 0 4px rgba(255,106,0,.12)}
+
+/* patch v3.11 */
+.disabledLabel{opacity:.55}
+.disabledLabel input,.disabledLabel select{background:#f3f5f7;cursor:not-allowed}
+.textBlock span + span{margin-top:.08em}
+.toolbar{justify-content:flex-start}.toolbarPdf{margin-left:auto}
+
+
+/* patch v3.12: PDF export without facade dimensions and CorelDraw-style drawing */
+body.pdf-exporting .signDims{display:none!important}
+body.pdf-exporting .stage{margin:14px!important;border-radius:20px!important;box-shadow:none!important}
+.pdfSheetFacade .signDims{display:none!important}
+.pdfDrawingStage .drawingSign .signDims{display:block!important;left:-70px!important;top:-52px!important}
+.pdfDrawingStage .drawingSign{overflow:visible!important}
+.pdfSheetDrawing .pdfDrawingStage{overflow:visible!important}
+.pdfSheetDrawing .signDims line{stroke:#ff5a00!important;stroke-width:1!important}
+.pdfSheetDrawing .signDims text{fill:#ff5a00!important;font-size:17px!important;font-weight:900!important;stroke:#fff!important;stroke-width:5!important;paint-order:stroke!important}
+.pdfSheetDrawing .signDims path{fill:#ff5a00!important}
+
+
+/* patch v3.14: clearer toolbar and calibration controls */
+.topbar{height:76px;padding:12px 22px}
+.app{height:calc(100vh - 76px)}
+.primaryExport,.toolbarPdf{display:none!important}
+.toolbar{min-height:76px;padding:12px 18px;gap:14px}
+.modeSwitch{background:#ffffff;border:1px solid #d8e0e8;border-radius:22px;padding:6px;box-shadow:0 10px 24px rgba(31,42,55,.08)}
+.modeSwitch button{min-width:112px;color:#2b3440;background:#f4f6f8;border:1px solid transparent!important;border-radius:16px;padding:13px 18px;font-size:16px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:1}
+.modeSwitch button.active{background:#ff6a00!important;color:#fff!important;border-color:#ff6a00!important;box-shadow:0 10px 22px rgba(255,106,0,.25)}
+.modeSwitch button:not(.active){background:#fff!important;color:#20242a!important;border-color:#d9e0e7!important}
+
+.panelPdfButton{margin-top:14px!important;background:#ff6a00!important;color:#fff!important;border:0!important;box-shadow:0 14px 30px rgba(255,106,0,.22);font-size:16px}
+
+
+/* patch v3.15: visual Cyrillic font selector */
+.fontDropdown{position:relative;margin:6px 0 12px;z-index:35}
+.fontCurrent{width:100%!important;margin:0!important;background:#fff!important;border:1px solid #d6dee7!important;border-radius:14px!important;padding:10px 12px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;text-align:left!important;color:#20242a!important}
+.fontMeta{display:flex;flex-direction:column;gap:3px;min-width:0}.fontMeta b{font-size:13px}.fontMeta small{font-size:11px;color:#798491;font-weight:700}.fontPreview{font-size:22px;font-weight:900;white-space:nowrap;color:#20242a;max-width:135px;overflow:hidden;text-overflow:ellipsis}.fontMenu{position:absolute;left:0;right:0;top:calc(100% + 8px);max-height:410px;overflow:auto;background:#fff;border:1px solid #d9e1e9;border-radius:18px;box-shadow:0 24px 50px rgba(31,42,55,.22);padding:8px;z-index:80}.fontMenu button{width:100%!important;margin:0!important;border:0!important;border-radius:13px!important;background:#fff!important;color:#20242a!important;padding:9px 10px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;text-align:left!important}.fontMenu button:hover,.fontMenu button.selected{background:#fff3e8!important;outline:1px solid #ffd0ad}.fontMenu span{display:flex;flex-direction:column;gap:3px;min-width:0}.fontMenu b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fontMenu small{font-size:10px;color:#788391;font-weight:800}.fontMenu em{font-style:normal;font-size:23px;font-weight:900;white-space:nowrap;color:#111;max-width:128px;overflow:hidden;text-overflow:ellipsis}.pdfSpec span{text-transform:none!important}
+
+/* v3.16 — фирменные оранжевые кнопки вместо чёрных */
+.file,
+.panel button.active,
+.left button.active,
+.primaryExport,
+.toolbarPdf,
+.panelPdfButton,
+.rotateHandle {
+  background:#ff6a00!important;
+  color:#fff!important;
+  border-color:#ff6a00!important;
+  box-shadow:0 12px 26px rgba(255,106,0,.22)!important;
+}
+.file.secondary,
+.resetPointsBtn {
+  background:#fff7ef!important;
+  color:#c24d00!important;
+  border-color:#ffbf8f!important;
+  box-shadow:none!important;
+}
+.moveSignBtn{display:none!important}
+
+/* v3.16 — аккуратные стрелки в стиле CorelDraw, направлены наружу */
+.pdfSheetDrawing .signDims line{stroke:#ff5a00!important;stroke-width:0.95!important}
+.pdfSheetDrawing .signDims path{fill:#ff5a00!important}
+.pdfSheetDrawing .signDims text{fill:#ff5a00!important;font-size:17px!important;font-weight:900!important;stroke:#fff!important;stroke-width:5!important;paint-order:stroke!important}
+
+/* v3.18-calibration-precision: фасад не обрезается, чтобы калибровка по двум точкам была точнее */
+.stage .facade{object-fit:contain;background:#d7dde3}
+.stage.night .facade{object-fit:contain}
+.letters{line-height:1}
+.textBlock span + span{margin-top:.18em}
+
+
+/* Header alignment fix for two-page PDF */
+.pdfTopHeader>*{min-width:0}
+.pdfTopHeader .pdfLogoBlock,.pdfTopHeader .pdfTrust,.pdfTopHeader .pdfContact{box-sizing:border-box}
+.pdfTrust span,.pdfContact span{max-width:100%}
+.pdfContact span{display:block}
+
+
+/* CorelDraw-style dimension arrows on PDF drawing page */
+.pdfDrawingStage .drawingSign .signDims{left:-105px!important;top:-60px!important;overflow:visible!important}
+.pdfSheetDrawing .signDims .dimMain{stroke-width:1.15!important}
+.pdfSheetDrawing .signDims .dimExt{stroke-width:.9!important;stroke-dasharray:0!important}
+.pdfSheetDrawing .signDims text{font-size:18px!important;font-weight:900!important;fill:#ff5a00!important;stroke:#fff!important;stroke-width:5!important;paint-order:stroke!important}
+.pdfSheetDrawing .signDims path{fill:#ff5a00!important}
+
+
+/* CorelDraw-style dimensions: keep SVG inside the drawing box so html2canvas/PDF never clips it. */
+.pdfDrawingStage .drawingSign{overflow:visible!important}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel{display:block!important;left:0!important;top:0!important;overflow:visible!important;z-index:10!important}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel .dimMain{stroke:#ff5a00!important;stroke-width:1.4!important}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel .dimExt{stroke:#ff5a00!important;stroke-width:.95!important;stroke-dasharray:0!important}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel text{fill:#ff5a00!important;font-size:18px!important;font-weight:900!important;stroke:#fff!important;stroke-width:5!important;paint-order:stroke!important}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel path{fill:#ff5a00!important}
+.pdfDrawingStage .drawingSign .letters{z-index:2!important}
+
+/* PDF page 2 centered layout */
+.pdfSheetDrawing .pdfDrawingGrid.centeredLayout{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:22px !important;
+  height:660px !important;
+  padding:20px 34px 54px !important;
+}
+
+.pdfSheetDrawing .pdfDrawingStage{
+  width:100% !important;
+  min-height:490px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+}
+
+.pdfSheetDrawing .pdfSpec.pdfSpecHorizontal{
+  width:100% !important;
+  display:flex !important;
+  flex-direction:row !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:44px !important;
+  padding:0 !important;
+  margin:0 auto !important;
+  text-align:center !important;
+}
+
+.pdfSheetDrawing .pdfSpecItem{
+  min-width:240px;
+  max-width:300px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:8px;
+}
+
+.pdfSheetDrawing .pdfSpecItem b{
+  display:block;
+  margin:0 !important;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+
+.pdfSheetDrawing .pdfSpecItem span{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:8px !important;
+  margin:0 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  text-align:center !important;
+  line-height:1.3;
+}
+
+.pdfSheetDrawing .pdfSpecItem i{
+  width:14px;
+  height:14px;
+  border:1px solid #999;
+  flex:0 0 auto;
+}
+
+/* Final PDF header redesign: ровная ось, одинаковые межстрочные интервалы, чистая инфографика */
+.pdfTopHeaderFinal{
+  height:112px !important;
+  display:grid !important;
+  grid-template-columns:305px 128px 128px 176px 206px 203px !important;
+  align-items:center !important;
+  gap:0 !important;
+  padding:14px 18px !important;
+  border-bottom:1px solid #d7d7d7 !important;
+  background:#fff !important;
+}
+
+.pdfTopHeaderFinal > *{
+  min-width:0 !important;
+  height:78px !important;
+  border-right:1px solid #d2d2d2 !important;
+  display:flex !important;
+  align-items:center !important;
+  box-sizing:border-box !important;
+}
+
+.pdfTopHeaderFinal > *:last-child{
+  border-right:0 !important;
+}
+
+.pdfHeaderBrand{
+  gap:14px !important;
+  padding-right:18px !important;
+}
+
+.pdfHeaderBrand img{
+  width:70px !important;
+  height:70px !important;
+  object-fit:contain !important;
+  flex:0 0 auto !important;
+}
+
+.pdfHeaderBrandText{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:8px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderBrandText b{
+  font-size:31px !important;
+  line-height:31px !important;
+  letter-spacing:-.055em !important;
+  color:#3a3a3a !important;
+  white-space:nowrap !important;
+  display:block !important;
+}
+
+.pdfHeaderBrandText b span{
+  color:#ff5a00 !important;
+}
+
+.pdfHeaderBrandText small{
+  display:block !important;
+  margin:0 !important;
+  font-size:12px !important;
+  line-height:14px !important;
+  font-weight:900 !important;
+  text-transform:uppercase !important;
+  color:#303030 !important;
+  letter-spacing:-.01em !important;
+}
+
+.pdfHeaderCard{
+  justify-content:center !important;
+  gap:10px !important;
+  padding:0 12px !important;
+}
+
+.pdfHeaderCard.wide{
+  padding:0 14px !important;
+}
+
+.pdfHeaderIcon{
+  width:36px !important;
+  height:36px !important;
+  flex:0 0 36px !important;
+  border:3px solid #ff5a00 !important;
+  border-radius:50% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  color:#ff5a00 !important;
+  font-style:normal !important;
+  font-size:19px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+}
+
+.pdfHeaderText{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:5px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderText span,
+.pdfHeaderText b{
+  margin:0 !important;
+  padding:0 !important;
+  display:block !important;
+  text-align:left !important;
+  text-transform:uppercase !important;
+  letter-spacing:-.02em !important;
+  color:#303030 !important;
+}
+
+.pdfHeaderText span{
+  font-size:12px !important;
+  line-height:13px !important;
+  font-weight:800 !important;
+}
+
+.pdfHeaderText b{
+  font-size:19px !important;
+  line-height:20px !important;
+  font-weight:900 !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderContacts,
+.pdfHeaderPhones{
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  gap:10px !important;
+  padding:0 18px !important;
+}
+
+.pdfHeaderContacts div,
+.pdfHeaderPhones div{
+  display:grid !important;
+  grid-template-columns:38px 1fr !important;
+  align-items:center !important;
+  column-gap:9px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderContacts em,
+.pdfHeaderPhones em{
+  width:38px !important;
+  height:20px !important;
+  border-radius:999px !important;
+  background:#fff2e8 !important;
+  border:1px solid #ffb47f !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:8px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  text-transform:uppercase !important;
+}
+
+.pdfHeaderContacts span,
+.pdfHeaderPhones span{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:14px !important;
+  line-height:16px !important;
+  font-weight:900 !important;
+  color:#303030 !important;
+  white-space:nowrap !important;
+  letter-spacing:-.02em !important;
+}
+
+.pdfHeaderPhones span{
+  font-size:15px !important;
+}
+
+/* Отключаем старые стили шапки внутри нового блока */
+.pdfTopHeaderFinal .pdfLogoBlock,
+.pdfTopHeaderFinal .pdfTrust,
+.pdfTopHeaderFinal .pdfContact{
+  all:unset;
+}
+
+/* v3.18-ui-light — облегчённый, более современный интерфейс */
+body{
+  background:#f4f7fa !important;
+  color:#1f2933 !important;
+}
+.topbar{
+  height:74px !important;
+  padding:10px 20px !important;
+  gap:18px !important;
+  box-shadow:0 8px 24px rgba(15,23,42,.06) !important;
+}
+.app{height:calc(100vh - 74px) !important;grid-template-columns:306px 1fr !important;}
+.brand{min-width:190px !important;}
+.brand b{font-size:20px !important;font-weight:800 !important;letter-spacing:-.025em !important;}
+.brand small{font-size:11px !important;color:#8a95a3 !important;letter-spacing:.01em !important;}
+.heroTitle h1{font-size:21px !important;font-weight:760 !important;letter-spacing:-.025em !important;color:#18212b !important;}
+.heroTitle p{font-size:12px !important;color:#7b8794 !important;margin-top:4px !important;}
+.panel{
+  padding:14px 14px 18px !important;
+  background:#fbfdff !important;
+  border-right:1px solid #e5ebf1 !important;
+}
+.sectionBadge{
+  background:#f5f8fb !important;
+  color:#526171 !important;
+  border:1px solid #e5ebf1 !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+  padding:7px 10px !important;
+  margin:10px 0 8px !important;
+}
+.hintBox{
+  background:#fffaf5 !important;
+  border:1px solid #f5dec6 !important;
+  border-radius:14px !important;
+  padding:11px 12px !important;
+  margin:8px 0 12px !important;
+}
+.hintBox b{font-size:13px !important;font-weight:800 !important;color:#26323f !important;}
+.hintBox span,.tip{font-size:11.5px !important;line-height:1.45 !important;color:#75808d !important;}
+label{
+  margin:8px 0 !important;
+  font-size:12px !important;
+  font-weight:700 !important;
+  color:#44515f !important;
+}
+input,select{
+  border-radius:12px !important;
+  border:1px solid #dbe3eb !important;
+  background:#fff !important;
+  padding:11px 12px !important;
+  margin-top:6px !important;
+  font-weight:500 !important;
+  color:#1f2933 !important;
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset;
+}
+input:focus,select:focus,button:focus{outline:none;box-shadow:0 0 0 3px rgba(255,106,0,.12) !important;border-color:#ffb37a !important;}
+.file,
+button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle):not(.fontCurrent):not(.fontMenu button):not(.colorCurrent):not(.colorMenu button){
+  border-radius:12px !important;
+  padding:11px 13px !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  margin:8px 0 !important;
+}
+.file{box-shadow:0 10px 24px rgba(255,106,0,.14) !important;}
+.file.secondary{background:#fff !important;color:#d95a00 !important;border-color:#ffd3b1 !important;box-shadow:none !important;}
+.summaryCard{
+  background:#ffffff !important;
+  border:1px solid #e5ebf1 !important;
+  border-radius:16px !important;
+  padding:13px !important;
+  box-shadow:0 8px 20px rgba(15,23,42,.04);
+}
+.summaryCard b{font-size:13px !important;font-weight:800 !important;}
+.summaryCard span{font-size:12px !important;color:#697785 !important;margin-top:7px !important;}
+.panelPdfButton{
+  margin-top:12px !important;
+  border-radius:12px !important;
+  padding:12px 14px !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+}
+.workspace{background:#f4f7fa !important;}
+.toolbar{
+  min-height:64px !important;
+  padding:10px 14px !important;
+  border-bottom:1px solid #e5ebf1 !important;
+  background:rgba(255,255,255,.84) !important;
+  backdrop-filter:blur(10px);
+}
+.modeSwitch{
+  border-radius:18px !important;
+  padding:4px !important;
+  box-shadow:0 8px 20px rgba(15,23,42,.06) !important;
+}
+.modeSwitch button{
+  min-width:96px !important;
+  padding:10px 14px !important;
+  font-size:15px !important;
+  font-weight:750 !important;
+  border-radius:14px !important;
+}
+.stage{
+  margin:12px !important;
+  border-radius:18px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 18px 36px rgba(31,42,55,.10) !important;
+}
+.placeholder b{font-weight:800 !important;font-size:22px !important;}
+.placeholder span{font-size:13px !important;color:#7b8794 !important;}
+.point{box-shadow:0 3px 8px rgba(255,106,0,.28) !important;}
+.fontCurrent{
+  border-radius:14px !important;
+  padding:11px 12px !important;
+  border-color:#dbe3eb !important;
+  box-shadow:0 6px 18px rgba(15,23,42,.04);
+}
+.fontMeta b{font-size:12px !important;font-weight:800 !important;}
+.fontMeta small{font-size:10.5px !important;color:#8a95a3 !important;}
+.fontPreview{font-size:20px !important;font-weight:800 !important;color:#1f2933 !important;max-width:120px !important;}
+.fontMenu{
+  border-radius:16px !important;
+  border:1px solid #e2e8f0 !important;
+  box-shadow:0 22px 48px rgba(15,23,42,.16) !important;
+}
+.fontMenu button{padding:10px 11px !important;border-radius:12px !important;}
+.fontMenu b{font-size:12px !important;}
+.fontMenu small{font-size:10px !important;}
+.fontMenu em{font-size:20px !important;font-weight:800 !important;max-width:118px !important;}
+
+/* Новый облегчённый dropdown цветов с реальными цветовыми плашками */
+.colorDropdown{position:relative;margin:6px 0 12px;z-index:34;}
+.colorDropdownLabel{display:flex !important;align-items:center !important;justify-content:space-between !important;gap:10px !important;margin:0 0 6px !important;font-size:12px !important;font-weight:700 !important;color:#44515f !important;}
+.colorDropdownLabel small{font-size:10.5px;color:#96a0ab;font-weight:800;letter-spacing:.04em;text-transform:uppercase;}
+.colorCurrent{
+  width:100% !important;
+  margin:0 !important;
+  padding:10px 12px !important;
+  border-radius:14px !important;
+  border:1px solid #dbe3eb !important;
+  background:#fff !important;
+  color:#1f2933 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  text-align:left !important;
+  box-shadow:0 6px 18px rgba(15,23,42,.04) !important;
+}
+.colorCurrent.open{border-color:#ffbf8f !important;box-shadow:0 0 0 3px rgba(255,106,0,.10) !important;}
+.colorCurrentMain,.colorMenuMain{display:flex;align-items:center;gap:10px;min-width:0;}
+.colorSwatchLarge{width:28px;height:28px;border-radius:9px;border:1px solid rgba(31,41,51,.16);box-shadow:inset 0 1px 1px rgba(255,255,255,.35);flex:0 0 auto;display:block;}
+.colorCurrentMeta,.colorMenuMeta{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.colorCurrentMeta b,.colorMenuMeta b{font-size:12px;font-weight:800;color:#1f2933;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.colorCurrentMeta small,.colorMenuMeta small{font-size:10.5px;color:#8b96a3;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.colorPaletteTag{display:inline-flex;align-items:center;justify-content:center;padding:6px 9px;border-radius:999px;background:#fff4ea;color:#d95a00;font-size:10.5px;font-weight:800;white-space:nowrap;letter-spacing:.03em;}
+.colorMenu{
+  position:absolute;
+  left:0;right:0;top:calc(100% + 8px);
+  max-height:350px;
+  overflow:auto;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  box-shadow:0 22px 48px rgba(15,23,42,.16);
+  padding:8px;
+  z-index:90;
+}
+.colorMenu button{
+  width:100% !important;
+  margin:0 !important;
+  padding:9px 10px !important;
+  border-radius:12px !important;
+  border:0 !important;
+  background:#fff !important;
+  color:#1f2933 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  text-align:left !important;
+  box-shadow:none !important;
+}
+.colorMenu button:hover,.colorMenu button.selected{background:#fff4ea !important;outline:1px solid #ffd3b1;}
+.colorMenu button em{font-style:normal;font-size:10.5px;color:#7f8a96;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;}
+
+@media (max-width:1180px){
+  .app{grid-template-columns:290px 1fr !important;}
+  .heroTitle h1{font-size:19px !important;}
+}
+
+/* v3.18-sales-ui — практичный интерфейс под конверсию в заявку */
+.topbarSales{
+  height:72px !important;
+  padding:10px 20px !important;
+  background:rgba(255,255,255,.94) !important;
+  backdrop-filter:blur(14px);
+}
+.topbarSales .heroTitle h1{
+  font-size:20px !important;
+  font-weight:780 !important;
+  color:#17212b !important;
+}
+.topbarSales .heroTitle p{
+  max-width:760px;
+  color:#75808d !important;
+}
+.topbarLead{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+  gap:2px;
+  min-width:170px;
+  padding-left:16px;
+  border-left:1px solid #e6ecf2;
+}
+.topbarLead span{
+  color:#8995a2;
+  font-size:11px;
+  font-weight:700;
+}
+.topbarLead a{
+  color:#1f2933;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:850;
+  white-space:nowrap;
+}
+.app{height:calc(100vh - 72px) !important;grid-template-columns:316px 1fr !important;}
+.panelSales{
+  padding:12px 12px 18px !important;
+}
+.conversionHero{
+  background:linear-gradient(135deg,#ff6a00,#ff8a2a);
+  color:#fff;
+  border-radius:18px;
+  padding:15px 15px 14px;
+  box-shadow:0 16px 30px rgba(255,106,0,.20);
+  margin-bottom:10px;
+}
+.conversionHero b{
+  display:block;
+  font-size:16px;
+  line-height:1.15;
+  font-weight:850;
+  letter-spacing:-.02em;
+}
+.conversionHero span{
+  display:block;
+  margin-top:7px;
+  font-size:12px;
+  line-height:1.35;
+  color:rgba(255,255,255,.88);
+  font-weight:560;
+}
+.salesSteps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  margin:8px 0 12px;
+}
+.salesSteps span{
+  background:#fff;
+  border:1px solid #e5ebf1;
+  border-radius:999px;
+  padding:6px 5px;
+  text-align:center;
+  color:#697785;
+  font-size:10.5px;
+  font-weight:800;
+}
+.panelSales .sectionBadge{
+  display:flex !important;
+  width:100%;
+  justify-content:space-between;
+  border-radius:13px !important;
+  background:#f8fafc !important;
+  margin:10px 0 8px !important;
+}
+.panelSales .hintBox{
+  display:none;
+}
+.panelSales label{
+  font-size:11.8px !important;
+  margin:7px 0 !important;
+}
+.panelSales input,.panelSales select{
+  padding:10px 11px !important;
+  border-radius:11px !important;
+  font-size:13px !important;
+}
+.panelSales .file,
+.panelSales button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle):not(.fontCurrent):not(.fontMenu button):not(.colorCurrent):not(.colorMenu button){
+  padding:10px 12px !important;
+  border-radius:12px !important;
+  font-size:13.5px !important;
+  min-height:42px;
+}
+.panelSales .tip{
+  margin-top:4px;
+  padding:8px 10px;
+  background:#f7f9fb;
+  border:1px solid #e7edf3;
+  border-radius:12px;
+}
+.panelSales .fontDropdown{margin-bottom:8px !important;}
+.panelSales .fontCurrent{padding:10px 11px !important;}
+.panelSales .fontPreview{font-size:18px !important;}
+.panelSales .colorDropdown{margin:5px 0 10px !important;}
+.panelSales .colorCurrent{padding:9px 10px !important;}
+.panelSales .colorSwatchLarge{width:25px;height:25px;border-radius:8px;}
+.panelSales .colorPaletteTag{display:none;}
+.panelSales .summaryCard{
+  margin-top:12px !important;
+  padding:12px !important;
+  border-radius:15px !important;
+  background:#fff !important;
+}
+.panelSales .summaryCard b{
+  color:#17212b;
+}
+.leadCard{
+  position:sticky;
+  bottom:0;
+  z-index:20;
+  margin-top:12px;
+  padding:13px;
+  background:rgba(255,255,255,.96);
+  border:1px solid #e3eaf0;
+  border-radius:18px;
+  box-shadow:0 -4px 24px rgba(15,23,42,.08);
+  backdrop-filter:blur(12px);
+}
+.leadCard b{
+  display:block;
+  font-size:14px;
+  font-weight:850;
+  color:#17212b;
+}
+.leadCard span{
+  display:block;
+  margin:6px 0 10px;
+  font-size:11.5px;
+  line-height:1.35;
+  color:#697785;
+}
+.leadCard .panelPdfButton{
+  width:100% !important;
+  margin:0 0 8px !important;
+  padding:11px 12px !important;
+  font-size:13.5px !important;
+  border-radius:12px !important;
+}
+.leadPrimary,.leadSecondary,.toolbarLead{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  border-radius:12px;
+  font-weight:820;
+  transition:.18s ease;
+}
+.leadPrimary{
+  background:#17212b;
+  color:#fff;
+  min-height:42px;
+  font-size:13.5px;
+  box-shadow:0 12px 24px rgba(23,33,43,.14);
+}
+.leadPrimary:hover{transform:translateY(-1px);box-shadow:0 16px 28px rgba(23,33,43,.18);}
+.leadSecondary{
+  margin-top:8px;
+  min-height:38px;
+  color:#d95a00;
+  background:#fff7ef;
+  border:1px solid #ffd3b1;
+  font-size:13px;
+}
+.toolbarSales{
+  gap:12px !important;
+}
+.workspaceHint{
+  color:#73808e;
+  font-size:12px;
+  font-weight:650;
+  background:#fff;
+  border:1px solid #e5ebf1;
+  border-radius:999px;
+  padding:10px 13px;
+}
+.toolbarLead{
+  margin-left:auto;
+  background:#17212b;
+  color:#fff;
+  min-height:40px;
+  padding:0 16px;
+  font-size:13px;
+  box-shadow:0 12px 24px rgba(23,33,43,.12);
+}
+.toolbarLead:hover{background:#0f1720;}
+.stage{
+  margin:10px 12px 12px !important;
+  border-radius:20px !important;
+}
+.placeholder{
+  background:radial-gradient(circle at 50% 42%,#fff 0,#f5f8fb 48%,#e9eff5 100%) !important;
+}
+.placeholder b:before{
+  content:'+';
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:58px;
+  height:58px;
+  margin:0 auto 14px;
+  border-radius:18px;
+  color:#ff6a00;
+  background:#fff4ea;
+  border:1px solid #ffd3b1;
+  font-size:32px;
+  font-weight:700;
+}
+@media(max-width:1180px){
+  .topbarLead{display:none;}
+  .workspaceHint{display:none;}
+  .app{grid-template-columns:300px 1fr !important;}
+}
+
+
+/* v3.18 sales ui final fixes — color dropdown alignment + cleaner PDF header */
+.colorDropdown{position:relative;margin:6px 0 10px;z-index:40;}
+.colorDropdownLabel{margin:0 0 7px !important;}
+.colorCurrent{display:grid !important;grid-template-columns:28px minmax(0,1fr) 16px !important;align-items:center !important;column-gap:10px !important;min-height:56px !important;}
+.colorCurrentMeta{min-width:0;overflow:hidden;}
+.colorCurrentMeta b,.colorMenuMeta b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.colorCurrentMeta small,.colorMenuMeta small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.colorDropdownArrow{display:flex;align-items:center;justify-content:center;color:#9aa4af;font-size:13px;font-weight:800;}
+.colorMenu{padding:6px !important;max-height:320px !important;overflow:auto !important;}
+.colorMenu button{display:grid !important;grid-template-columns:28px minmax(0,1fr) !important;align-items:center !important;column-gap:10px !important;min-height:54px !important;padding:9px 10px !important;}
+.colorMenuMeta{min-width:0;}
+.colorMenu button em,.colorPaletteTag,.colorCurrentMain,.colorMenuMain{display:none !important;}
+.panelSales .colorCurrent{min-height:54px !important;padding:10px 11px !important;}
+.panelSales .colorMenu button{min-height:52px !important;}
+.panelSales .colorSwatchLarge{width:24px;height:24px;border-radius:8px;}
+
+.pdfTopHeaderFinal{height:118px !important;grid-template-columns:290px 130px 130px 140px 210px 210px !important;padding:12px 14px !important;align-items:stretch !important;}
+.pdfTopHeaderFinal > *{height:auto !important;min-height:92px !important;padding:0 14px !important;align-items:center !important;}
+.pdfHeaderBrand{padding-right:16px !important;gap:12px !important;}
+.pdfHeaderBrand img{width:64px !important;height:64px !important;}
+.pdfHeaderBrandText{gap:6px !important;}
+.pdfHeaderBrandText b{font-size:28px !important;line-height:28px !important;}
+.pdfHeaderBrandText small{font-size:11px !important;line-height:13px !important;}
+.pdfHeaderMetric,.pdfHeaderMetricWide{display:flex !important;align-items:center !important;justify-content:center !important;gap:10px !important;text-align:left !important;}
+.pdfHeaderMetricIcon{width:38px;height:38px;flex:0 0 38px;border-radius:50%;border:2px solid #ff5a00;color:#ff5a00;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:900;font-size:18px;line-height:1;background:#fff7f1;}
+.pdfHeaderMetricText{display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0;}
+.pdfHeaderMetricText b{margin:0;font-size:22px;line-height:22px;font-weight:900;letter-spacing:-.03em;color:#303030;white-space:nowrap;}
+.pdfHeaderMetricText span{margin:0;font-size:11px;line-height:12px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#7d8792;}
+.pdfHeaderInfoBlock{display:flex !important;flex-direction:column !important;justify-content:center !important;gap:10px !important;}
+.pdfHeaderInfoRow{display:grid !important;grid-template-columns:28px minmax(0,1fr) !important;align-items:center !important;column-gap:10px !important;min-width:0 !important;}
+.pdfHeaderInfoIcon{width:28px;height:28px;border-radius:50%;border:1px solid #ffc59c;background:#fff6ef;color:#ff5a00;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px;line-height:1;}
+.pdfHeaderInfoText{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.pdfHeaderInfoText b{margin:0;font-size:13px;line-height:14px;font-weight:900;color:#303030;white-space:nowrap;}
+.pdfHeaderInfoText span{margin:0;font-size:10px;line-height:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#8b95a0;white-space:nowrap;}
+.pdfHeaderInfoPhones .pdfHeaderInfoText b{font-size:12px;line-height:14px;}
+.pdfHeaderInfoPhones .pdfHeaderInfoText span{font-size:9.5px;line-height:11px;}
+/* hide legacy header styles */
+.pdfHeaderCard,.pdfHeaderIcon,.pdfHeaderText,.pdfHeaderContacts,.pdfHeaderPhones{display:none !important;}
+
+
+/* v3.18-premium-ui — спокойный премиальный интерфейс без продающих блоков */
+:root{
+  --rs-bg:#f5f3ef;
+  --rs-surface:#ffffff;
+  --rs-surface-soft:#faf9f6;
+  --rs-line:#e7e1d8;
+  --rs-text:#1f242b;
+  --rs-muted:#7b7f86;
+  --rs-accent:#ff6a00;
+  --rs-accent-soft:#fff1e6;
+  --rs-shadow:0 18px 46px rgba(31,36,43,.08);
+}
+body{
+  background:radial-gradient(circle at 78% 8%,rgba(255,106,0,.08),transparent 34%),var(--rs-bg)!important;
+  color:var(--rs-text)!important;
+}
+.topbarPremium{
+  height:76px!important;
+  padding:14px 24px!important;
+  gap:22px!important;
+  background:rgba(255,255,255,.88)!important;
+  border-bottom:1px solid rgba(231,225,216,.86)!important;
+  box-shadow:0 12px 34px rgba(31,36,43,.06)!important;
+  backdrop-filter:blur(18px);
+}
+.topbarPremium .brand{
+  min-width:210px!important;
+}
+.topbarPremium .brand b{
+  font-size:21px!important;
+  line-height:22px!important;
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+}
+.topbarPremium .brand small{
+  margin-top:4px!important;
+  color:#8b8178!important;
+  font-size:11px!important;
+  font-weight:650!important;
+}
+.topbarPremium .heroTitle h1{
+  font-size:22px!important;
+  line-height:24px!important;
+  font-weight:760!important;
+  letter-spacing:-.035em!important;
+  color:#191d22!important;
+}
+.topbarPremium .heroTitle p{
+  margin-top:5px!important;
+  font-size:12px!important;
+  color:#8b8178!important;
+  font-weight:520!important;
+}
+.app{
+  height:calc(100vh - 76px)!important;
+  grid-template-columns:314px 1fr!important;
+  background:transparent!important;
+}
+.panelPremium{
+  padding:16px 14px 20px!important;
+  background:rgba(255,255,255,.76)!important;
+  border-right:1px solid rgba(231,225,216,.9)!important;
+  backdrop-filter:blur(16px);
+}
+.panelPremium .sectionBadge{
+  width:100%;
+  justify-content:space-between;
+  margin:12px 0 9px!important;
+  padding:8px 11px!important;
+  border-radius:14px!important;
+  background:var(--rs-surface-soft)!important;
+  border:1px solid var(--rs-line)!important;
+  color:#595d64!important;
+  font-size:11px!important;
+  font-weight:750!important;
+  letter-spacing:.01em!important;
+}
+.panelPremium .hintBox{
+  display:none!important;
+}
+.panelPremium label{
+  margin:8px 0!important;
+  color:#4e535a!important;
+  font-size:12px!important;
+  font-weight:650!important;
+}
+.panelPremium input,
+.panelPremium select{
+  height:41px!important;
+  padding:9px 11px!important;
+  border-radius:12px!important;
+  border:1px solid #e2ddd5!important;
+  background:#fff!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset!important;
+  color:#22272d!important;
+  font-size:13px!important;
+  font-weight:520!important;
+}
+.panelPremium input:focus,
+.panelPremium select:focus,
+.panelPremium button:focus{
+  border-color:#ffc09a!important;
+  box-shadow:0 0 0 4px rgba(255,106,0,.10)!important;
+}
+.panelPremium .file,
+.panelPremium button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle):not(.fontCurrent):not(.fontMenu button):not(.colorCurrent):not(.colorMenu button){
+  min-height:40px!important;
+  padding:10px 12px!important;
+  border-radius:12px!important;
+  font-size:13px!important;
+  font-weight:720!important;
+  margin:8px 0!important;
+}
+.panelPremium .file{
+  background:#1f242b!important;
+  color:#fff!important;
+  border-color:#1f242b!important;
+  box-shadow:0 12px 24px rgba(31,36,43,.12)!important;
+}
+.panelPremium .file.secondary{
+  background:#fff!important;
+  color:#c95300!important;
+  border:1px solid #f6c8a7!important;
+  box-shadow:0 8px 18px rgba(31,36,43,.04)!important;
+}
+.panelPremium .tip{
+  margin-top:4px!important;
+  padding:8px 10px!important;
+  border-radius:12px!important;
+  background:#faf9f6!important;
+  border:1px solid #eee8df!important;
+  color:#7f858c!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+}
+.panelPremium .fontDropdown{margin:6px 0 10px!important;}
+.panelPremium .fontCurrent{
+  min-height:48px!important;
+  padding:9px 11px!important;
+  border-radius:14px!important;
+  border:1px solid #e2ddd5!important;
+  box-shadow:0 8px 22px rgba(31,36,43,.05)!important;
+}
+.panelPremium .fontMeta b{font-size:12px!important;font-weight:760!important;}
+.panelPremium .fontMeta small{font-size:10px!important;color:#92979f!important;font-weight:600!important;}
+.panelPremium .fontPreview{font-size:18px!important;font-weight:780!important;max-width:118px!important;}
+.panelPremium .summaryCard{
+  margin-top:12px!important;
+  padding:13px!important;
+  border-radius:16px!important;
+  background:linear-gradient(180deg,#fff,#fbfaf7)!important;
+  border:1px solid #e7e1d8!important;
+  box-shadow:0 12px 28px rgba(31,36,43,.06)!important;
+}
+.panelPremium .summaryCard b{
+  font-size:13px!important;
+  font-weight:760!important;
+  color:#1f242b!important;
+}
+.panelPremium .summaryCard span{
+  margin-top:7px!important;
+  color:#6f757d!important;
+  font-size:12px!important;
+  font-weight:560!important;
+}
+.premiumPdfButton,
+.panelPremium .panelPdfButton{
+  width:100%!important;
+  margin-top:12px!important;
+  background:linear-gradient(135deg,#242a31,#11161b)!important;
+  color:#fff!important;
+  border:0!important;
+  box-shadow:0 14px 28px rgba(17,22,27,.16)!important;
+}
+.workspace{
+  background:transparent!important;
+}
+.toolbarPremium{
+  min-height:62px!important;
+  padding:10px 14px!important;
+  background:rgba(255,255,255,.62)!important;
+  border-bottom:1px solid rgba(231,225,216,.85)!important;
+  backdrop-filter:blur(18px);
+}
+.toolbarPremium .modeSwitch{
+  background:#fff!important;
+  border:1px solid #e7e1d8!important;
+  border-radius:18px!important;
+  padding:4px!important;
+  box-shadow:0 10px 26px rgba(31,36,43,.06)!important;
+}
+.toolbarPremium .modeSwitch button{
+  min-width:94px!important;
+  height:38px!important;
+  padding:0 14px!important;
+  border-radius:14px!important;
+  font-size:14px!important;
+  font-weight:700!important;
+  color:#4d535a!important;
+}
+.toolbarPremium .modeSwitch button.active{
+  background:#1f242b!important;
+  color:#fff!important;
+  box-shadow:0 10px 22px rgba(31,36,43,.16)!important;
+}
+.stage{
+  margin:12px 14px 14px!important;
+  border-radius:24px!important;
+  background:#d4d8dc!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),var(--rs-shadow)!important;
+}
+.placeholder{
+  background:linear-gradient(135deg,#ffffff,#f2eee7)!important;
+  color:#8c9298!important;
+}
+.placeholder b{
+  font-size:22px!important;
+  font-weight:740!important;
+  color:#5b6168!important;
+}
+.placeholder b:before{
+  content:'';
+  display:block;
+  width:58px;
+  height:58px;
+  margin:0 auto 14px;
+  border-radius:20px;
+  background:
+    linear-gradient(#ff6a00,#ff6a00) center/24px 2px no-repeat,
+    linear-gradient(#ff6a00,#ff6a00) center/2px 24px no-repeat,
+    #fff4eb;
+  border:1px solid #f6c8a7;
+}
+.placeholder span{
+  color:#969ba1!important;
+  font-size:13px!important;
+}
+
+/* Premium color dropdown: ровное меню без смещений */
+.panelPremium .colorDropdown{
+  position:relative!important;
+  margin:6px 0 10px!important;
+  z-index:45!important;
+}
+.panelPremium .colorDropdownLabel{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  margin:0 0 6px!important;
+  color:#4e535a!important;
+  font-size:12px!important;
+  font-weight:650!important;
+}
+.panelPremium .colorDropdownLabel small{
+  color:#9a938d!important;
+  font-size:10px!important;
+  font-weight:750!important;
+  letter-spacing:.05em!important;
+}
+.panelPremium .colorCurrent{
+  display:grid!important;
+  grid-template-columns:26px minmax(0,1fr) 16px!important;
+  align-items:center!important;
+  column-gap:10px!important;
+  min-height:52px!important;
+  width:100%!important;
+  margin:0!important;
+  padding:9px 10px!important;
+  border-radius:14px!important;
+  border:1px solid #e2ddd5!important;
+  background:#fff!important;
+  box-shadow:0 8px 22px rgba(31,36,43,.05)!important;
+  text-align:left!important;
+}
+.panelPremium .colorCurrent.open{
+  border-color:#ffc09a!important;
+  box-shadow:0 0 0 4px rgba(255,106,0,.10),0 12px 28px rgba(31,36,43,.08)!important;
+}
+.panelPremium .colorSwatchLarge{
+  width:26px!important;
+  height:26px!important;
+  border-radius:9px!important;
+  border:1px solid rgba(31,36,43,.18)!important;
+  display:block!important;
+  flex:0 0 auto!important;
+}
+.panelPremium .colorCurrentMeta,
+.panelPremium .colorMenuMeta{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.panelPremium .colorCurrentMeta b,
+.panelPremium .colorMenuMeta b{
+  display:block!important;
+  color:#1f242b!important;
+  font-size:12px!important;
+  line-height:14px!important;
+  font-weight:760!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.panelPremium .colorCurrentMeta small,
+.panelPremium .colorMenuMeta small{
+  display:block!important;
+  margin-top:2px!important;
+  color:#9097a0!important;
+  font-size:10.5px!important;
+  line-height:12px!important;
+  font-weight:620!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.panelPremium .colorDropdownArrow{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#a2a7ad!important;
+  font-size:12px!important;
+  font-weight:800!important;
+}
+.panelPremium .colorMenu{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:calc(100% + 8px)!important;
+  max-height:318px!important;
+  overflow:auto!important;
+  padding:6px!important;
+  background:#fff!important;
+  border:1px solid #e2ddd5!important;
+  border-radius:16px!important;
+  box-shadow:0 22px 52px rgba(31,36,43,.18)!important;
+  z-index:120!important;
+}
+.panelPremium .colorMenu button{
+  display:grid!important;
+  grid-template-columns:26px minmax(0,1fr)!important;
+  align-items:center!important;
+  column-gap:10px!important;
+  width:100%!important;
+  min-height:50px!important;
+  margin:0!important;
+  padding:8px 9px!important;
+  border-radius:12px!important;
+  border:0!important;
+  background:#fff!important;
+  text-align:left!important;
+  box-shadow:none!important;
+}
+.panelPremium .colorMenu button:hover,
+.panelPremium .colorMenu button.selected{
+  background:#fff4eb!important;
+  outline:1px solid #f7ccb0!important;
+}
+.panelPremium .colorCurrentMain,
+.panelPremium .colorMenuMain,
+.panelPremium .colorPaletteTag,
+.panelPremium .colorMenu button em{
+  display:none!important;
+}
+
+/* убрать следы продающего интерфейса, если браузер держит старые классы */
+.conversionHero,.salesSteps,.leadCard,.topbarLead,.toolbarLead,.workspaceHint{display:none!important;}
+
+/* v3.18 premium-orange-facade-upload — яркие кнопки, светлая шапка, загрузка фасада через рабочую область */
+:root{
+  --rs-orange:#ff6a00;
+  --rs-orange-2:#ff7a1a;
+  --rs-orange-soft:#fff3ea;
+  --rs-text:#34383d;
+  --rs-muted:#7e8791;
+}
+
+.topbarPremium{
+  background:rgba(255,255,255,.94)!important;
+  border-bottom:1px solid rgba(255,106,0,.16)!important;
+  box-shadow:0 12px 34px rgba(255,106,0,.05),0 10px 30px rgba(31,36,43,.04)!important;
+}
+.topbarPremium:before{
+  content:'';
+  width:4px;
+  height:42px;
+  border-radius:999px;
+  background:linear-gradient(180deg,var(--rs-orange),var(--rs-orange-2));
+  box-shadow:0 8px 20px rgba(255,106,0,.24);
+}
+.topbarPremium .brand b,
+.topbarPremium .heroTitle h1{
+  color:var(--rs-text)!important;
+}
+.topbarPremium .brand span{
+  color:var(--rs-orange)!important;
+}
+.topbarPremium .brand small,
+.topbarPremium .heroTitle p{
+  color:var(--rs-muted)!important;
+}
+
+.panelPremium .file,
+.panelPremium button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle):not(.fontCurrent):not(.fontMenu button):not(.colorCurrent):not(.colorMenu button),
+.premiumPdfButton,
+.panelPremium .panelPdfButton,
+.toolbarPremium .modeSwitch button.active,
+.rotateHandle{
+  background:linear-gradient(135deg,var(--rs-orange),var(--rs-orange-2))!important;
+  color:#fff!important;
+  border:1px solid var(--rs-orange)!important;
+  box-shadow:0 12px 26px rgba(255,106,0,.22)!important;
+}
+.panelPremium .file:hover,
+.panelPremium button:not(.primaryExport):not(.toolbarPdf):not(.rotateHandle):not(.fontCurrent):not(.fontMenu button):not(.colorCurrent):not(.colorMenu button):hover,
+.premiumPdfButton:hover,
+.panelPremium .panelPdfButton:hover{
+  transform:translateY(-1px);
+  box-shadow:0 16px 30px rgba(255,106,0,.28)!important;
+}
+.panelPremium .file.secondary{
+  background:#fff!important;
+  color:#d95500!important;
+  border:1px solid #ffc49b!important;
+  box-shadow:0 8px 20px rgba(255,106,0,.08)!important;
+}
+.panelPremium .file.secondary:hover{
+  background:var(--rs-orange-soft)!important;
+  color:#bf4b00!important;
+}
+.toolbarPremium .modeSwitch button{
+  color:#59616a!important;
+}
+.toolbarPremium .modeSwitch button.active{
+  color:#fff!important;
+}
+
+/* Лицевой цвет всегда выше остальных элементов панели */
+.panelPremium .colorDropdown{z-index:60!important;}
+.panelPremium .colorDropdownFace{z-index:5000!important;}
+.panelPremium .colorDropdownFace.isOpen{z-index:9000!important;}
+.panelPremium .colorDropdownFace .colorMenu{z-index:9999!important;}
+.panelPremium .colorDropdownSide{z-index:100!important;}
+.panelPremium .fontDropdown{z-index:80!important;}
+
+/* Загрузка фасада только через рабочую область */
+.hiddenFacadeInput{display:none!important;}
+.stage{transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;}
+.stage.facadeDragOver{
+  box-shadow:inset 0 0 0 3px rgba(255,106,0,.42),0 22px 55px rgba(255,106,0,.16)!important;
+}
+.facadeUploadDrop{
+  cursor:pointer;
+  text-align:center;
+  gap:10px!important;
+  padding:40px!important;
+}
+.facadeUploadDrop b{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:76px!important;
+  height:76px!important;
+  margin:0 auto 8px!important;
+  border-radius:26px!important;
+  background:linear-gradient(135deg,var(--rs-orange),var(--rs-orange-2))!important;
+  color:#fff!important;
+  font-size:48px!important;
+  line-height:1!important;
+  font-weight:520!important;
+  box-shadow:0 18px 38px rgba(255,106,0,.25)!important;
+}
+.facadeUploadDrop b:before{content:none!important;display:none!important;}
+.facadeUploadDrop strong{
+  display:block!important;
+  color:#42474d!important;
+  font-size:22px!important;
+  line-height:1.2!important;
+  font-weight:760!important;
+}
+.facadeUploadDrop span{
+  display:block!important;
+  color:#8a929b!important;
+  font-size:14px!important;
+  font-weight:560!important;
+}
+.stage.facadeDragOver .facadeUploadDrop b{
+  transform:scale(1.04);
+}
+
+/* меньше черного в старых элементах */
+.modeSwitch{background:#fff!important;}
+.workspace,.toolbarPremium{color:var(--rs-text)!important;}
+
+
+/* Menu hints instead of numbered section titles */
+.panelPremium .sectionBadge{
+  width:100% !important;
+  justify-content:flex-start !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  padding:13px 0 7px !important;
+  margin:14px 0 4px !important;
+  color:#7a828d !important;
+  font-size:12px !important;
+  font-weight:760 !important;
+  line-height:1.25 !important;
+  letter-spacing:.015em !important;
+  text-transform:none !important;
+}
+.panelPremium .sectionBadge::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#ff6a00;
+  box-shadow:0 0 0 4px rgba(255,106,0,.10);
+  margin-right:10px;
+  flex:0 0 auto;
+}
+.panelPremium .sectionBadge:first-child{margin-top:0 !important;}
+
+
+/* logo exact visual size fix */
+.logo{max-width:none !important;flex:0 0 auto !important;object-fit:contain !important;}
+
+
+/* Small replace-photo button on the live visualization screen */
+.stageAddPhotoButton{
+  position:absolute!important;
+  top:14px!important;
+  right:14px!important;
+  z-index:45!important;
+  width:auto!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:8px 12px!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,var(--rs-orange),var(--rs-orange-2))!important;
+  color:#fff!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:760!important;
+  letter-spacing:.01em!important;
+  box-shadow:0 10px 24px rgba(255,106,0,.22)!important;
+  opacity:.94!important;
+}
+.stageAddPhotoButton:hover{
+  opacity:1!important;
+  transform:translateY(-1px);
+  box-shadow:0 14px 30px rgba(255,106,0,.28)!important;
+}
+body.pdf-exporting .stageAddPhotoButton{display:none!important;}
+
+
+/* Headerless embedded constructor frame for Tilda/site page */
+html, body, #root{
+  min-height:100%;
+}
+body{
+  background:transparent!important;
+  overflow:hidden!important;
+}
+#root{
+  min-height:100vh!important;
+  padding:14px!important;
+  display:flex!important;
+  align-items:stretch!important;
+  justify-content:center!important;
+}
+.topbar,
+.topbarPremium,
+.topbarSales,
+.topbarLead,
+.brand,
+.heroTitle{
+  display:none!important;
+}
+.app.constructorFrame,
+.app{
+  width:100%!important;
+  height:calc(100vh - 28px)!important;
+  min-height:700px!important;
+  display:grid!important;
+  grid-template-columns:320px minmax(0,1fr)!important;
+  overflow:hidden!important;
+  margin:0!important;
+  border-radius:26px!important;
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid rgba(224,229,236,.95)!important;
+  box-shadow:0 18px 55px rgba(18,28,45,.10),0 2px 8px rgba(18,28,45,.04)!important;
+}
+.app.constructorFrame:before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:26px;
+  pointer-events:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.88);
+  z-index:2;
+}
+.panelPremium,
+.panel.left{
+  border-right:1px solid #eceff4!important;
+  background:linear-gradient(180deg,#fff 0%,#fbfcfd 100%)!important;
+  padding:18px 16px 20px!important;
+}
+.workspace{
+  min-width:0!important;
+  background:linear-gradient(180deg,#fafbfc 0%,#f3f5f8 100%)!important;
+  padding:14px!important;
+}
+.toolbarPremium,
+.toolbar{
+  min-height:52px!important;
+  padding:0 0 12px!important;
+  border-bottom:0!important;
+  background:transparent!important;
+  justify-content:flex-end!important;
+}
+.modeSwitch{
+  padding:4px!important;
+  border:1px solid #e5e9ef!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.82)!important;
+  box-shadow:0 8px 22px rgba(18,28,45,.06)!important;
+}
+.modeSwitch button{
+  padding:8px 13px!important;
+  min-width:auto!important;
+  border-radius:999px!important;
+  font-size:13px!important;
+  font-weight:740!important;
+}
+.stage{
+  margin:0!important;
+  flex:1!important;
+  min-height:0!important;
+  border-radius:22px!important;
+  border:1px solid #e4e9f0!important;
+  background:#f6f8fb!important;
+  overflow:hidden!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),0 14px 38px rgba(18,28,45,.08)!important;
+}
+.stage.night{
+  background:#070b13!important;
+  border-color:#202938!important;
+}
+.facadeUploadDrop{
+  border:1px dashed #cfd7e2!important;
+  border-radius:20px!important;
+  margin:14px!important;
+  height:calc(100% - 28px)!important;
+  background:linear-gradient(135deg,#fbfcfe 0%,#f1f4f8 100%)!important;
+}
+.facadeUploadDrop b{
+  width:68px!important;
+  height:68px!important;
+  border-radius:22px!important;
+  font-size:42px!important;
+  box-shadow:0 14px 34px rgba(255,106,0,.20)!important;
+}
+.facadeUploadDrop strong{
+  font-size:20px!important;
+}
+.facadeUploadDrop span{
+  font-size:13px!important;
+}
+
+/* Less prominent replace-photo button */
+.stageAddPhotoButton{
+  top:14px!important;
+  right:14px!important;
+  padding:7px 11px!important;
+  border:1px solid rgba(225,230,238,.86)!important;
+  background:rgba(255,255,255,.68)!important;
+  color:#67717d!important;
+  font-size:11.5px!important;
+  font-weight:720!important;
+  letter-spacing:.005em!important;
+  box-shadow:0 8px 22px rgba(18,28,45,.10)!important;
+  opacity:.72!important;
+  backdrop-filter:blur(10px)!important;
+}
+.stageAddPhotoButton:hover{
+  opacity:.95!important;
+  color:#303945!important;
+  background:rgba(255,255,255,.88)!important;
+  border-color:rgba(255,106,0,.34)!important;
+  box-shadow:0 10px 26px rgba(18,28,45,.14)!important;
+  transform:translateY(-1px);
+}
+
+@media(max-width:900px){
+  body{overflow:auto!important;}
+  #root{padding:10px!important;}
+  .app.constructorFrame,.app{
+    height:auto!important;
+    min-height:0!important;
+    display:block!important;
+    border-radius:22px!important;
+  }
+  .workspace{min-height:620px!important;}
+  .stage{height:560px!important;}
+}
+
+/* v3.18 PDF header final clean alignment */
+.pdfTopHeaderFinal{
+  height:112px !important;
+  display:grid !important;
+  grid-template-columns:320px 150px 150px 150px 160px 160px !important;
+  align-items:center !important;
+  gap:0 !important;
+  padding:13px 16px !important;
+  border-bottom:1px solid #d9d9d9 !important;
+  background:#fff !important;
+}
+.pdfTopHeaderFinal > *{
+  height:86px !important;
+  min-height:86px !important;
+  border-right:1px solid #d4d4d4 !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 14px !important;
+  min-width:0 !important;
+}
+.pdfTopHeaderFinal > *:last-child{border-right:0 !important;}
+.pdfHeaderBrand{
+  justify-content:flex-start !important;
+  gap:13px !important;
+  padding-left:0 !important;
+  padding-right:16px !important;
+}
+.pdfHeaderBrand img{
+  display:block !important;
+  width:70px !important;
+  height:70px !important;
+  min-width:70px !important;
+  object-fit:contain !important;
+  flex:0 0 70px !important;
+}
+.pdfHeaderBrandText{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:7px !important;
+  min-width:0 !important;
+}
+.pdfHeaderBrandText b{
+  display:block !important;
+  margin:0 !important;
+  font-size:30px !important;
+  line-height:30px !important;
+  font-weight:900 !important;
+  letter-spacing:-.055em !important;
+  color:#303030 !important;
+  white-space:nowrap !important;
+}
+.pdfHeaderBrandText b span{color:#ff5a00 !important;}
+.pdfHeaderBrandText small{
+  display:block !important;
+  margin:0 !important;
+  font-size:11px !important;
+  line-height:13px !important;
+  font-weight:900 !important;
+  text-transform:uppercase !important;
+  color:#303030 !important;
+  max-width:195px !important;
+}
+.pdfHeaderMetric,
+.pdfHeaderMetricWide{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  padding:0 13px !important;
+  text-align:left !important;
+}
+.pdfHeaderMetricIcon{
+  width:40px !important;
+  height:40px !important;
+  min-width:40px !important;
+  flex:0 0 40px !important;
+  border:3px solid #ff5a00 !important;
+  border-radius:50% !important;
+  background:#fff !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:19px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+}
+.pdfHeaderMetricText{
+  min-width:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:5px !important;
+}
+.pdfHeaderMetricText b{
+  display:block !important;
+  margin:0 !important;
+  color:#303030 !important;
+  font-size:22px !important;
+  line-height:22px !important;
+  font-weight:900 !important;
+  letter-spacing:-.03em !important;
+  white-space:nowrap !important;
+  text-transform:uppercase !important;
+}
+.pdfHeaderMetricText span{
+  display:block !important;
+  margin:0 !important;
+  color:#8a949f !important;
+  font-size:12px !important;
+  line-height:12px !important;
+  font-weight:900 !important;
+  letter-spacing:.02em !important;
+  text-transform:uppercase !important;
+  white-space:nowrap !important;
+}
+.pdfHeaderInfoBlock,
+.pdfHeaderInfoPhones{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:14px !important;
+  padding:0 12px !important;
+}
+.pdfHeaderInfoRow{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:28px minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:9px !important;
+  min-width:0 !important;
+}
+.pdfHeaderInfoIcon{
+  width:28px !important;
+  height:28px !important;
+  border-radius:50% !important;
+  border:1px solid #ffc59c !important;
+  background:#fff6ef !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:14px !important;
+  line-height:1 !important;
+  flex:0 0 auto !important;
+}
+.pdfHeaderInfoText{
+  display:block !important;
+  min-width:0 !important;
+}
+.pdfHeaderInfoText b{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:#303030 !important;
+  font-size:13px !important;
+  line-height:14px !important;
+  font-weight:900 !important;
+  letter-spacing:-.025em !important;
+  white-space:nowrap !important;
+}
+.pdfHeaderInfoText span{display:none !important;}
+.pdfHeaderInfoPhones .pdfHeaderInfoText b{
+  font-size:13px !important;
+  line-height:14px !important;
+  letter-spacing:-.035em !important;
+}
+.pdfNote{
+  min-height:38px !important;
+  height:auto !important;
+  padding:7px 30px !important;
+  text-align:center !important;
+  line-height:1.25 !important;
+  font-size:12px !important;
+  color:#333 !important;
+}
+
+/* v3.18 PDF header + watermark final polish */
+.pdfPages,
+.pdfSheet{
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+
+.pdfTopHeaderFinal{
+  height:112px !important;
+  grid-template-columns:360px 145px 145px 145px 255px !important;
+  padding:14px 18px !important;
+  align-items:center !important;
+  border-bottom:1px solid #d7dce2 !important;
+  background:#fff !important;
+}
+
+.pdfTopHeaderFinal > *{
+  height:84px !important;
+  min-height:84px !important;
+  padding:0 18px !important;
+  border-right:1px solid #dde2e8 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+}
+
+.pdfTopHeaderFinal > *:last-child{
+  border-right:0 !important;
+}
+
+.pdfHeaderBrand{
+  justify-content:flex-start !important;
+  gap:14px !important;
+  padding-left:0 !important;
+  padding-right:20px !important;
+}
+
+.pdfHeaderBrand img{
+  width:62px !important;
+  height:62px !important;
+  object-fit:contain !important;
+  flex:0 0 62px !important;
+}
+
+.pdfHeaderBrandText{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  gap:4px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderBrandText b{
+  margin:0 !important;
+  color:#2d3136 !important;
+  font-size:30px !important;
+  line-height:30px !important;
+  font-weight:900 !important;
+  letter-spacing:-.065em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderBrandText b span{
+  color:#ff5a00 !important;
+}
+
+.pdfHeaderBrandText small{
+  margin:0 !important;
+  color:#2f343a !important;
+  font-size:10.5px !important;
+  line-height:12px !important;
+  font-weight:850 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.015em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderBrandText em{
+  display:block !important;
+  margin:0 !important;
+  color:#ff5a00 !important;
+  font-style:normal !important;
+  font-size:12px !important;
+  line-height:13px !important;
+  font-weight:850 !important;
+  letter-spacing:.01em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderMetric,
+.pdfHeaderMetricWide{
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  text-align:left !important;
+}
+
+.pdfHeaderMetricIcon{
+  width:42px !important;
+  height:42px !important;
+  flex:0 0 42px !important;
+  border-radius:50% !important;
+  border:2.5px solid #ff5a00 !important;
+  background:#fff6ef !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:19px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+}
+
+.pdfHeaderMetricText{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:4px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderMetricText b{
+  margin:0 !important;
+  color:#2d3136 !important;
+  font-size:21px !important;
+  line-height:22px !important;
+  font-weight:900 !important;
+  letter-spacing:-.045em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderMetricText span{
+  margin:0 !important;
+  color:#8a95a1 !important;
+  font-size:10.5px !important;
+  line-height:11px !important;
+  font-weight:850 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.055em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderInfoBlock.pdfHeaderInfoPhones{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:12px !important;
+  padding-left:24px !important;
+  padding-right:0 !important;
+}
+
+.pdfHeaderInfoPhones .pdfHeaderInfoRow{
+  display:grid !important;
+  grid-template-columns:32px minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:12px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderInfoIcon{
+  width:32px !important;
+  height:32px !important;
+  border-radius:50% !important;
+  border:1px solid #ffc59c !important;
+  background:#fff7f1 !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:15px !important;
+  line-height:1 !important;
+  flex:0 0 32px !important;
+}
+
+.pdfHeaderInfoText{
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+}
+
+.pdfHeaderInfoText b,
+.pdfHeaderInfoPhones .pdfHeaderInfoText b{
+  margin:0 !important;
+  color:#2d3136 !important;
+  font-size:16px !important;
+  line-height:18px !important;
+  font-weight:900 !important;
+  letter-spacing:-.025em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderInfoText span{
+  display:none !important;
+}
+
+.pdfFacadeStage.snapshotStage{
+  overflow:hidden !important;
+}
+
+.pdfFacadeStage.snapshotStage .pdfWatermark{
+  left:50% !important;
+  top:52% !important;
+  transform:translate(-50%,-50%) rotate(-18deg) !important;
+  transform-origin:center center !important;
+  font-size:54px !important;
+  line-height:1 !important;
+  max-width:760px !important;
+  color:rgba(255,90,0,.17) !important;
+  letter-spacing:.035em !important;
+  white-space:nowrap !important;
+  z-index:4 !important;
+}
+
+.pdfWatermark.drawing{
+  font-family:Inter,"Segoe UI",Arial,sans-serif !important;
+}
+
+/* v3.18.1 — PDF watermark strict clipping + light Montserrat header */
+.pdfPages,
+.pdfSheet,
+.pdfTopHeaderFinal,
+.pdfTopHeaderFinal *{
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+}
+
+.pdfSheet{
+  border:1px solid #e3e7ec !important;
+}
+
+.pdfTopHeaderFinal{
+  height:106px !important;
+  display:grid !important;
+  grid-template-columns:380px 130px 130px 130px 308px !important;
+  gap:0 !important;
+  padding:12px 22px !important;
+  align-items:center !important;
+  background:#fff !important;
+  border-bottom:1px solid #edf0f4 !important;
+}
+
+.pdfTopHeaderFinal > *{
+  height:76px !important;
+  min-height:76px !important;
+  padding:0 16px !important;
+  border-right:1px solid #edf0f4 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-sizing:border-box !important;
+  min-width:0 !important;
+}
+
+.pdfTopHeaderFinal > *:last-child{
+  border-right:0 !important;
+}
+
+.pdfHeaderBrand{
+  justify-content:flex-start !important;
+  gap:13px !important;
+  padding-left:0 !important;
+  padding-right:20px !important;
+}
+
+.pdfHeaderBrand img{
+  width:54px !important;
+  height:54px !important;
+  min-width:54px !important;
+  flex:0 0 54px !important;
+  object-fit:contain !important;
+}
+
+.pdfHeaderBrandText{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:3px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderBrandText b{
+  margin:0 !important;
+  color:#2f343a !important;
+  font-size:27px !important;
+  line-height:29px !important;
+  font-weight:600 !important;
+  letter-spacing:-.055em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderBrandText b span{
+  color:#ff5a00 !important;
+  font-weight:600 !important;
+}
+
+.pdfHeaderBrandText small{
+  margin:0 !important;
+  color:#4f5964 !important;
+  font-size:10.2px !important;
+  line-height:12px !important;
+  font-weight:500 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.018em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderBrandText em{
+  display:block !important;
+  margin-top:2px !important;
+  color:#ff5a00 !important;
+  font-size:11.5px !important;
+  line-height:13px !important;
+  font-weight:500 !important;
+  font-style:normal !important;
+  letter-spacing:.005em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderMetric,
+.pdfHeaderMetricWide{
+  flex-direction:column !important;
+  gap:6px !important;
+  text-align:center !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 8px !important;
+}
+
+.pdfHeaderMetricIcon{
+  width:34px !important;
+  height:34px !important;
+  min-width:34px !important;
+  flex:0 0 34px !important;
+  border:1.6px solid rgba(255,90,0,.55) !important;
+  border-radius:50% !important;
+  background:#fff8f3 !important;
+  color:#ff5a00 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-style:normal !important;
+  font-size:15px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+}
+
+.pdfHeaderMetricText{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:2px !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderMetricText b{
+  margin:0 !important;
+  color:#30363d !important;
+  font-size:16px !important;
+  line-height:18px !important;
+  font-weight:600 !important;
+  letter-spacing:-.025em !important;
+  text-transform:none !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderMetricText span{
+  margin:0 !important;
+  color:#8a96a3 !important;
+  font-size:9.5px !important;
+  line-height:11px !important;
+  font-weight:500 !important;
+  text-transform:uppercase !important;
+  letter-spacing:.055em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderInfoBlock.pdfHeaderInfoPhones{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:10px !important;
+  padding-left:26px !important;
+  padding-right:0 !important;
+}
+
+.pdfHeaderInfoPhones .pdfHeaderInfoRow{
+  display:grid !important;
+  grid-template-columns:28px minmax(0,1fr) !important;
+  align-items:center !important;
+  column-gap:11px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.pdfHeaderInfoIcon{
+  width:28px !important;
+  height:28px !important;
+  min-width:28px !important;
+  flex:0 0 28px !important;
+  border-radius:50% !important;
+  border:1px solid rgba(255,90,0,.24) !important;
+  background:#fff8f3 !important;
+  color:#ff5a00 !important;
+  font-size:13px !important;
+  font-weight:500 !important;
+}
+
+.pdfHeaderInfoText{
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+}
+
+.pdfHeaderInfoText b,
+.pdfHeaderInfoPhones .pdfHeaderInfoText b{
+  margin:0 !important;
+  color:#30363d !important;
+  font-size:15px !important;
+  line-height:18px !important;
+  font-weight:500 !important;
+  letter-spacing:-.012em !important;
+  white-space:nowrap !important;
+}
+
+.pdfHeaderInfoText span{
+  display:none !important;
+}
+
+.pdfSheetTitle,
+.pdfSheetDrawing h2{
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-weight:600 !important;
+  letter-spacing:-.025em !important;
+}
+
+.pdfFacadeCenter{
+  height:609px !important;
+  padding:14px 44px 48px !important;
+}
+
+.pdfFacadeStage.snapshotStage{
+  position:relative !important;
+  width:845px !important;
+  height:500px !important;
+  background:#fff !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+.stageSnapshotBox{
+  position:relative !important;
+  display:block !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  width:auto !important;
+  height:auto !important;
+  overflow:hidden !important;
+  background:#fff !important;
+}
+
+.stageSnapshotBox .stageSnapshot,
+.stageSnapshotBox .facade{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+}
+
+.stageSnapshotBox .pdfWatermark,
+.pdfFacadeStage.snapshotStage .stageSnapshotBox .pdfWatermark{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) rotate(-18deg) !important;
+  transform-origin:center center !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:clamp(32px, 6.2vw, 58px) !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  color:rgba(255,90,0,.16) !important;
+  letter-spacing:.035em !important;
+  white-space:nowrap !important;
+  max-width:none !important;
+  z-index:4 !important;
+  pointer-events:none !important;
+}
+
+/* не даём старым правилам ставить водяной знак относительно белого поля */
+.pdfFacadeStage.snapshotStage > .pdfWatermark{
+  display:none !important;
+}
+
+/* v3.18.2 — окончательная фиксация водяного знака внутри снимка PDF */
+.stageSnapshotBox{
+  container-type:inline-size;
+}
+
+.stageSnapshotBox .pdfWatermark,
+.pdfFacadeStage.snapshotStage .stageSnapshotBox .pdfWatermark{
+  position:absolute !important;
+  left:50% !important;
+  top:48% !important;
+  width:68% !important;
+  height:auto !important;
+  max-width:68% !important;
+  display:block !important;
+  text-align:center !important;
+  transform:translate(-50%,-50%) rotate(-18deg) !important;
+  transform-origin:center center !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:30px !important;
+  line-height:1 !important;
+  font-weight:500 !important;
+  letter-spacing:.02em !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  color:rgba(255,90,0,.16) !important;
+  z-index:4 !important;
+  pointer-events:none !important;
+}
+
+/* Для очень узких загруженных изображений водяной знак дополнительно уменьшается */
+@container (max-width: 520px){
+  .stageSnapshotBox .pdfWatermark,
+  .pdfFacadeStage.snapshotStage .stageSnapshotBox .pdfWatermark{
+    font-size:24px !important;
+    width:72% !important;
+    max-width:72% !important;
+  }
+}
+
+@container (max-width: 380px){
+  .stageSnapshotBox .pdfWatermark,
+  .pdfFacadeStage.snapshotStage .stageSnapshotBox .pdfWatermark{
+    font-size:19px !important;
+    width:76% !important;
+    max-width:76% !important;
+  }
+}
+
+
+/* v3.18.3 — PDF: отдельные данные второй строки в спецификации */
+.pdfSheetDrawing .pdfSpec.pdfSpecHorizontal{
+  gap:30px !important;
+}
+.pdfSheetDrawing .pdfSpecItem{
+  min-width:270px !important;
+  max-width:330px !important;
+  gap:7px !important;
+}
+.pdfSheetDrawing .pdfSpecItem span{
+  flex-wrap:wrap !important;
+  row-gap:3px !important;
+  column-gap:7px !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:12px !important;
+  font-weight:500 !important;
+  color:#30343a !important;
+}
+.pdfSheetDrawing .pdfSpecItem span strong{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  font-size:10px;
+  line-height:1.1;
+  font-weight:600;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  color:#8a94a1;
+}
+.pdfSheetDrawing .pdfSpecItem b{
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  color:#20242a !important;
+}
+.pdfSheetDrawing .pdfSpecItem i{
+  width:13px !important;
+  height:13px !important;
+  border-radius:4px !important;
+}
+
+
+/* v3.18-line2-color-menu-up — меню цветов второй строки открывается вверх и поверх соседних блоков */
+.panelPremium .colorDropdownDropUp{
+  z-index:16000!important;
+}
+.panelPremium .colorDropdownDropUp.isOpen{
+  z-index:30000!important;
+}
+.panelPremium .colorDropdownDropUp .colorMenu{
+  top:auto!important;
+  bottom:calc(100% + 8px)!important;
+  z-index:30001!important;
+  max-height:300px!important;
+}
+.panelPremium .colorDropdownDropUp.colorDropdownSide{
+  z-index:16000!important;
+}
+.panelPremium .colorDropdownDropUp.colorDropdownSide.isOpen,
+.panelPremium .colorDropdownDropUp.colorDropdownFace.isOpen{
+  z-index:30000!important;
+}
+
+
+/* v3.18.4 — PDF polish: phones closer to icons + aligned second-line spec labels */
+.pdfHeaderInfoBlock.pdfHeaderInfoPhones{
+  padding-left:12px !important;
+  gap:8px !important;
+}
+.pdfHeaderInfoPhones .pdfHeaderInfoRow{
+  grid-template-columns:30px max-content !important;
+  column-gap:6px !important;
+  justify-content:flex-start !important;
+}
+.pdfHeaderInfoIcon{
+  width:30px !important;
+  height:30px !important;
+  min-width:30px !important;
+  flex-basis:30px !important;
+}
+.pdfHeaderInfoText b,
+.pdfHeaderInfoPhones .pdfHeaderInfoText b{
+  font-size:15px !important;
+  line-height:18px !important;
+  letter-spacing:-.01em !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow{
+  display:grid !important;
+  grid-template-columns:15px 118px minmax(0,1fr) !important;
+  align-items:center !important;
+  justify-items:start !important;
+  width:100% !important;
+  gap:7px !important;
+  flex-wrap:nowrap !important;
+  text-align:left !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow strong{
+  display:block !important;
+  width:auto !important;
+  min-width:118px !important;
+  text-align:left !important;
+  justify-content:flex-start !important;
+  font-size:9.5px !important;
+  line-height:1.15 !important;
+  font-weight:600 !important;
+  letter-spacing:.03em !important;
+  white-space:nowrap !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow em{
+  display:block !important;
+  min-width:0 !important;
+  font-style:normal !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:500 !important;
+  color:#30343a !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecGhostSwatch{
+  visibility:hidden !important;
+  border-color:transparent !important;
+  background:transparent !important;
+}
+
+/* Chrome iframe/sidebar scroll fix — меню всегда прокручивается внутри конструктора */
+html,
+body,
+#root{
+  height:100% !important;
+  min-height:0 !important;
+}
+body{
+  overflow:hidden !important;
+}
+#root{
+  overflow:hidden !important;
+}
+.app.constructorFrame,
+.app{
+  height:calc(100dvh - 28px) !important;
+  min-height:0 !important;
+  max-height:calc(100dvh - 28px) !important;
+  overflow:hidden !important;
+}
+.panelPremium,
+.panel.left,
+.panel.compact,
+.panel{
+  height:100% !important;
+  max-height:100% !important;
+  min-height:0 !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  overscroll-behavior:contain !important;
+  -webkit-overflow-scrolling:touch !important;
+  scrollbar-gutter:stable !important;
+  padding-bottom:96px !important;
+}
+.workspace{
+  height:100% !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+.stage{
+  min-height:0 !important;
+}
+@media(max-width:900px){
+  body,
+  #root{
+    overflow:auto !important;
+  }
+  .app.constructorFrame,
+  .app{
+    height:auto !important;
+    max-height:none !important;
+  }
+  .panelPremium,
+  .panel.left,
+  .panel.compact,
+  .panel{
+    height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
+    padding-bottom:28px !important;
+  }
+}
+
+/* v3.18.5 — final fix: all dropdowns open down and above panel blocks */
+.panelPremium,
+.panelPremium *{
+  backface-visibility:hidden;
+}
+.panelPremium .fontDropdown,
+.panelPremium .colorDropdown{
+  position:relative !important;
+  overflow:visible !important;
+  z-index:30 !important;
+  isolation:isolate !important;
+}
+.panelPremium .fontDropdown.isOpen,
+.panelPremium .colorDropdown.isOpen{
+  z-index:100000 !important;
+}
+.panelPremium .fontMenu,
+.panelPremium .colorMenu,
+.panelPremium .colorDropdownDropUp .colorMenu{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  top:calc(100% + 8px) !important;
+  bottom:auto !important;
+  z-index:100001 !important;
+  background:#fff !important;
+  opacity:1 !important;
+  overflow:auto !important;
+  transform:none !important;
+  pointer-events:auto !important;
+}
+.panelPremium .fontMenu{
+  max-height:430px !important;
+}
+.panelPremium .colorMenu{
+  max-height:350px !important;
+}
+.panelPremium .fontMenu button,
+.panelPremium .colorMenu button{
+  position:relative !important;
+  z-index:1 !important;
+  background:#fff !important;
+}
+.panelPremium .fontMenu button:hover,
+.panelPremium .fontMenu button.selected,
+.panelPremium .colorMenu button:hover,
+.panelPremium .colorMenu button.selected{
+  background:#fff4ea !important;
+}
+
+/* v3.18.5 — PDF first page: explicit snapshot size for html2canvas */
+.pdfFacadeStage.snapshotStage .stageSnapshotBox{
+  flex:0 0 auto !important;
+  display:block !important;
+  overflow:hidden !important;
+  min-width:1px !important;
+  min-height:1px !important;
+  background:#fff !important;
+}
+.pdfFacadeStage.snapshotStage .stageSnapshotBox .stageSnapshot,
+.pdfFacadeStage.snapshotStage .stageSnapshotBox .facade{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+}
+
+/* v3.18.5 — PDF spec: no overlaps, second-line data on its own aligned row */
+.pdfSheetDrawing .pdfSpec.pdfSpecHorizontal{
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1fr !important;
+  align-items:start !important;
+  gap:36px !important;
+  width:100% !important;
+}
+.pdfSheetDrawing .pdfSpecItem{
+  min-width:0 !important;
+  max-width:none !important;
+  width:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:8px !important;
+}
+.pdfSheetDrawing .pdfSpecItem > span{
+  width:100% !important;
+  min-width:0 !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecSecondTitle{
+  display:block !important;
+  width:100% !important;
+  margin-top:8px !important;
+  padding-top:0 !important;
+  font-size:9.6px !important;
+  line-height:1.15 !important;
+  font-weight:600 !important;
+  letter-spacing:.04em !important;
+  text-transform:uppercase !important;
+  color:#8a94a1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecSecondValue{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  width:100% !important;
+  margin-top:0 !important;
+  font-size:12px !important;
+  line-height:1.25 !important;
+  font-weight:500 !important;
+  color:#30343a !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecSecondValue i{
+  flex:0 0 13px !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecGhostSwatch{
+  visibility:hidden !important;
+  border-color:transparent !important;
+  background:transparent !important;
+}
+
+/* v3.18.6 — dropdown portals: меню всегда ниже кнопки и поверх всего меню */
+.fontMenuPortal,
+.colorMenuPortal{
+  position:fixed !important;
+  right:auto !important;
+  bottom:auto !important;
+  z-index:2147483000 !important;
+  background:#fff !important;
+  border:1px solid #d9e1e9 !important;
+  border-radius:18px !important;
+  box-shadow:0 28px 60px rgba(31,42,55,.28) !important;
+  overflow:auto !important;
+  padding:8px !important;
+  transform:none !important;
+  pointer-events:auto !important;
+  isolation:auto !important;
+}
+.fontMenuPortal button,
+.colorMenuPortal button{
+  background:#fff !important;
+  position:relative !important;
+  z-index:1 !important;
+}
+.fontMenuPortal button:hover,
+.fontMenuPortal button.selected,
+.colorMenuPortal button:hover,
+.colorMenuPortal button.selected{
+  background:#fff4ea !important;
+  outline:1px solid #ffd3b1 !important;
+}
+
+/* v3.18.6 — PDF spec: данные второй строки строго в одной строке без наложений */
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow{
+  display:grid !important;
+  grid-template-columns:15px 126px minmax(0,1fr) !important;
+  align-items:center !important;
+  justify-items:start !important;
+  width:100% !important;
+  gap:8px !important;
+  margin-top:4px !important;
+  text-align:left !important;
+  white-space:normal !important;
+  overflow:visible !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow strong{
+  display:block !important;
+  width:126px !important;
+  min-width:126px !important;
+  max-width:126px !important;
+  text-align:left !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:9px !important;
+  line-height:1.12 !important;
+  font-weight:600 !important;
+  letter-spacing:.025em !important;
+  text-transform:uppercase !important;
+  color:#8a94a1 !important;
+  white-space:nowrap !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow em{
+  display:block !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  font-style:normal !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:11px !important;
+  line-height:1.18 !important;
+  font-weight:500 !important;
+  color:#30343a !important;
+  overflow-wrap:anywhere !important;
+  text-align:left !important;
+}
+.pdfSheetDrawing .pdfSpecItem span.pdfSpecSecondRow i{
+  width:13px !important;
+  height:13px !important;
+  border-radius:4px !important;
+  flex:0 0 13px !important;
+}
+
+/* v3.18.6 — PDF first page: фиксированный белый блок под прямую вставку снимка в PDF */
+.pdfFacadeStage.snapshotStage{
+  background:#fff !important;
+}
+
+
+/* v3.18.6 — restored PDF facade visualization sizing.
+   Earlier stable versions rendered the first-page facade snapshot from a fixed PDF box.
+   This override prevents old width:auto!important rules from collapsing the snapshot in Chrome/html2canvas. */
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed{
+  width:var(--shot-box-width, 845px) !important;
+  height:var(--shot-box-height, 500px) !important;
+  min-width:var(--shot-box-width, 845px) !important;
+  min-height:var(--shot-box-height, 500px) !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  flex:0 0 auto !important;
+  display:block !important;
+  position:relative !important;
+  overflow:hidden !important;
+}
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .stageSnapshot,
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .facade{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  object-fit:contain !important;
+}
+
+
+/* v3.18.7 — PDF first page watermark: large diagonal, transparent orange */
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .pdfWatermark,
+.stageSnapshotBox.stageSnapshotBoxFixed .pdfWatermark{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:auto !important;
+  max-width:none !important;
+  height:auto !important;
+  display:block !important;
+  text-align:center !important;
+  transform:translate(-50%,-50%) rotate(-30deg) !important;
+  transform-origin:center center !important;
+  font-family:"Montserrat", Inter, "Segoe UI", Arial, sans-serif !important;
+  font-size:calc((var(--shot-box-width, 845px) + var(--shot-box-height, 500px)) * .072) !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.025em !important;
+  white-space:nowrap !important;
+  overflow:visible !important;
+  color:rgba(255,90,0,.085) !important;
+  opacity:1 !important;
+  z-index:4 !important;
+  pointer-events:none !important;
+}
+
+/* v3.18.8 — точное расстояние между строками, PDF-спецификация и водяной знак */
+.textBlock{
+  gap:0 !important;
+}
+.textBlock span + span{
+  margin-top:0;
+}
+
+.pdfSheetDrawing .pdfSpec.pdfSpecHorizontal{
+  display:grid !important;
+  grid-template-columns:repeat(4, minmax(0,1fr)) !important;
+  align-items:start !important;
+  justify-content:stretch !important;
+  width:100% !important;
+  gap:18px !important;
+  padding:0 8px !important;
+  margin:0 auto !important;
+  text-align:center !important;
+}
+.pdfSheetDrawing .pdfSpecItem{
+  min-width:0 !important;
+  max-width:none !important;
+  width:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  gap:6px !important;
+  padding:0 !important;
+  text-align:center !important;
+}
+.pdfSheetDrawing .pdfSpecItem b{
+  min-height:30px !important;
+  display:flex !important;
+  align-items:flex-end !important;
+  justify-content:center !important;
+  margin:0 !important;
+  font-size:10.4px !important;
+  line-height:1.15 !important;
+  font-weight:650 !important;
+  letter-spacing:.025em !important;
+  text-align:center !important;
+  color:#20242a !important;
+}
+.pdfSheetDrawing .pdfSpecItem > span{
+  width:100% !important;
+  min-width:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  margin:0 !important;
+  font-size:10.8px !important;
+  line-height:1.22 !important;
+  font-weight:500 !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  text-align:center !important;
+}
+.pdfSheetDrawing .pdfSpecItem i{
+  width:12px !important;
+  height:12px !important;
+  flex:0 0 12px !important;
+  border-radius:4px !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecSecondTitle{
+  display:block !important;
+  width:100% !important;
+  margin-top:5px !important;
+  font-size:8.8px !important;
+  line-height:1.1 !important;
+  font-weight:650 !important;
+  letter-spacing:.035em !important;
+  text-transform:uppercase !important;
+  color:#8a94a1 !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecSecondValue{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  width:100% !important;
+  font-size:10.8px !important;
+  line-height:1.22 !important;
+  font-weight:500 !important;
+  color:#30343a !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  text-align:center !important;
+}
+.pdfSheetDrawing .pdfSpecItem .pdfSpecGhostSwatch{
+  visibility:hidden !important;
+  border-color:transparent !important;
+  background:transparent !important;
+}
+.pdfSheetDrawing .pdfSpecLighting span{
+  min-height:32px !important;
+}
+
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .pdfWatermark,
+.stageSnapshotBox.stageSnapshotBoxFixed .pdfWatermark{
+  left:50% !important;
+  top:50% !important;
+  max-width:92% !important;
+  width:92% !important;
+  text-align:center !important;
+  transform:translate(-50%,-50%) rotate(-30deg) !important;
+  font-size:calc((var(--shot-box-width, 845px) + var(--shot-box-height, 500px)) * .055) !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  letter-spacing:.015em !important;
+  color:rgba(255,90,0,.065) !important;
+  white-space:nowrap !important;
+}
+
+
+/* v3.18.12 — PDF exact live position: no layout shift during stage snapshot */
+.stage.stagePdfExporting .point,
+.stage.stagePdfExporting .rotateHandle,
+.stage.stagePdfExporting .signDims,
+.stage.stagePdfExporting .stageAddPhotoButton{
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+.stage.stagePdfExporting{
+  transform:none!important;
+}
+
+/* v3.19 — PDF facade no-stretch export.
+   На первой странице PDF показываем готовый снимок рабочей области как обычное изображение
+   с сохранением пропорций. Никакой повторной подгонки исходного фасада через cover/stretch. */
+.pdfFacadeStage.snapshotStage{
+  background:#fff !important;
+}
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed{
+  overflow:hidden !important;
+  background:#fff !important;
+}
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .stageSnapshot,
+.pdfFacadeStage.snapshotStage .stageSnapshotBox.stageSnapshotBoxFixed .facade,
+.pdfFacadeStage.snapshotStage .facade{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  display:block !important;
+}
+
+/* v3.20 — PDF facade full-contain export.
+   При формировании прозрачного слоя вывески скрываем сам фасад и техническую подложку,
+   чтобы итоговый PDF собирался из двух частей: 1) исходное фото целиком через contain,
+   2) вывеска строго в координатах рабочего поля. */
+.stage.stagePdfSignOnly{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.stage.stagePdfSignOnly:after{
+  content:none!important;
+  display:none!important;
+}
+.stage.stagePdfSignOnly .facade,
+.stage.stagePdfSignOnly .placeholder,
+.stage.stagePdfSignOnly .stageAddPhotoButton{
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+/* v3.21 — подложка */
+.signSubstrate{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:0;
+  border:1px solid rgba(0,0,0,.16);
+  pointer-events:none;
+}
+.logoAbsolute{
+  position:absolute !important;
+  z-index:2;
+  margin:0 !important;
+}
+.textBlockAbsolute{
+  position:absolute !important;
+  z-index:2;
+}
+.textBlockAbsolute span{
+  position:relative;
+  z-index:2;
+}
+
+/* v3.24 — более объёмная подложка, прямые углы и отдельные размеры в PDF */
+.signSubstrate{
+  border-radius:0 !important;
+}
+.pdfSheetDrawing .pdfSpec.pdfSpecHorizontal{
+  grid-template-columns:repeat(6, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+.pdfSheetDrawing .pdfSpecItem b{
+  font-size:9.8px !important;
+}
+.pdfSheetDrawing .pdfSpecItem > span{
+  font-size:10.2px !important;
+}
+
+/* v3.30 — переключатель день/ночь и индикатор калибровки в рабочем окне */
+.stageModeSwitch{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  z-index:45;
+  display:flex;
+  gap:6px;
+  padding:6px;
+  border-radius:16px;
+  background:rgba(17,24,34,.68);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.stageModeSwitch button{
+  width:auto !important;
+  min-width:86px !important;
+  margin:0 !important;
+  padding:10px 13px !important;
+  border:1px solid rgba(255,255,255,.22) !important;
+  border-radius:12px !important;
+  background:rgba(255,255,255,.13) !important;
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  box-shadow:none !important;
+}
+.stageModeSwitch button.active{
+  background:#ff6a00 !important;
+  border-color:#ff6a00 !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(255,106,0,.28) !important;
+}
+.calibrationStatus{
+  position:absolute;
+  top:14px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:46;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:188px;
+  padding:8px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.74);
+  color:#1f2933;
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  pointer-events:none;
+}
+.calibrationStatus i{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  display:block;
+  box-shadow:0 0 0 3px rgba(0,0,0,.04);
+}
+.calibrationStatus.calibrated i{background:#19a44a;}
+.calibrationStatus.notCalibrated i{background:#e23434;}
+.stage.night .calibrationStatus{
+  background:rgba(18,24,32,.72);
+  border-color:rgba(255,255,255,.18);
+  color:#fff;
+}
+.stage.stagePdfExporting .stageModeSwitch,
+.stage.stagePdfExporting .calibrationStatus,
+.stage.stagePdfSignOnly .stageModeSwitch,
+.stage.stagePdfSignOnly .calibrationStatus{
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
+
+/* v3.33 PDF spacing for line 2 dimensions */
+.pdfSheetDrawing .pdfDrawingGrid.centeredLayout{padding-bottom:72px!important;}
+.pdfSheetDrawing .pdfDrawingStage{padding-bottom:24px!important;}
+
+
+/* v3.34: compact PDF dimension callouts and safe live height lines */
+.pdfSheetDrawing .pdfDrawingGrid.centeredLayout{padding-left:18px!important;padding-right:18px!important;padding-bottom:78px!important;}
+.pdfSheetDrawing .pdfDrawingStage{padding-left:0!important;padding-right:0!important;padding-bottom:34px!important;}
+.pdfDrawingStage .drawingSign .signDims.signDimsCorel text{font-size:16px!important;stroke-width:4.5px!important;}
+
+
+/* v3.36: PDF page 2 unit note */
+.pdfSheetSubtitle{margin:4px 0 0;text-align:center;font-size:11px;line-height:1.2;color:#6b7280;font-weight:700;}
+.pdfSheetDrawing .pdfDrawingGrid.centeredLayout{padding-top:14px!important;}
+
+/* v3.38 — единый цвет и стабильная объёмность подложки в PDF */
+.signSubstrate.signSubstrate3d{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+}
+.signSubstrate.signSubstrate3d .signSubstrateDepth,
+.signSubstrate.signSubstrate3d .signSubstrateFace{
+  position:absolute!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  border:1px solid rgba(0,0,0,.16);
+  pointer-events:none!important;
+}
+.signSubstrate.signSubstrate3d .signSubstrateDepth{
+  z-index:0!important;
+}
+.signSubstrate.signSubstrate3d .signSubstrateFace{
+  left:0!important;
+  top:0!important;
+  z-index:1!important;
+}
+.pdfDrawingStage .drawingSign{
+  z-index:2!important;
+}
+.pdfWatermark.drawing{
+  z-index:0!important;
+  color:rgba(255,90,0,.085)!important;
+}
+.pdfSheetDrawing .pdfDrawingStage .pdfWatermark.drawing{
+  pointer-events:none!important;
+}
+
+.signSnapshotGraphic{position:absolute;left:0;top:0;display:block;z-index:2;pointer-events:none;user-select:none;-webkit-user-drag:none;}
+
+
+/* v3.47 export buttons in one horizontal row */
+.exportButtonsRow{display:flex;gap:10px;align-items:stretch;margin-top:12px;}
+.exportButtonsRow .panelPdfButton{flex:1 1 0;margin-top:0!important;}
+.exportButtonsRow .panelSvgButton{min-width:0;}
+
+/* v3.54 — стабильная геометрия технического макета на 2-й странице PDF */
+.technicalTextSvg{
+  position:absolute;
+  left:0;
+  top:0;
+  display:block;
+  overflow:visible!important;
+  pointer-events:none;
+  z-index:3;
+}
+.pdfSheetDrawing .letters,
+.pdfSheetDrawing .textBlock,
+.pdfSheetDrawing .drawingSign{
+  overflow:visible!important;
+}
+
+/* v3.58 — технический макет PDF: Canvas-растр каждой строки по тем же метрикам,
+   что используются для размерных линий. Это исключает смещение SVG-текста. */
+.technicalRasterTextLayer{
+  position:absolute;
+  inset:0;
+  overflow:visible!important;
+  pointer-events:none;
+  z-index:3;
+}
+.technicalRasterTextLine{
+  position:absolute;
+  display:block;
+  max-width:none!important;
+  object-fit:fill;
+  overflow:visible!important;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* v3.59 — изгиб строк вывески по дуге */
+.curveControl{display:block}
+.curveControl>span{float:right;color:#ff6a00;font-weight:800}
+.curveControl input[type="range"]{width:100%;margin-top:9px;accent-color:#ff6a00}
+.curvedTextBlock{position:absolute;pointer-events:none;overflow:visible}
+.curvedTextLine{position:absolute;overflow:visible}
+.curvedGlyph{position:absolute;display:block;white-space:pre;text-align:center;overflow:visible;box-sizing:border-box;will-change:transform}
+
+
+/* v3.62 — форма контактов перед скачиванием */
+.leadGateOverlay{
+  position:fixed; inset:0; z-index:999999;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px; background:rgba(18,25,38,.58); backdrop-filter:blur(5px);
+}
+.leadGateModal{
+  position:relative; width:min(460px,100%); box-sizing:border-box;
+  padding:28px; border-radius:24px; background:#fff;
+  box-shadow:0 28px 80px rgba(15,23,42,.28);
+  color:#1f2937;
+}
+.leadGateModal h3{margin:0 0 8px 0; font-size:26px; line-height:1.15; color:#20242d}
+.leadGateModal p{margin:0 0 18px; color:#667085; font-size:14px; line-height:1.55}
+.leadGateModal form{display:grid; gap:13px}
+.leadGateModal label{display:grid; gap:7px; color:#344054; font-size:13px; font-weight:800}
+.leadGateModal input{
+  width:100%; height:50px; box-sizing:border-box; padding:0 14px;
+  border:1px solid #d0d5dd; border-radius:13px; outline:none;
+  background:#fff; color:#101828; font:inherit; font-size:16px;
+}
+.leadGateModal input:focus{border-color:#ff6b00; box-shadow:0 0 0 3px rgba(255,107,0,.13)}
+.leadGateError{padding:10px 12px; border-radius:11px; background:#fff1f0; color:#b42318; font-size:13px; font-weight:700}
+.leadGateSubmit{
+  min-height:56px; width:100%; border:0; border-radius:14px; padding:0 18px;
+  background:#ff6b00 !important; color:#fff !important; font-size:16px; font-weight:900; cursor:pointer;
+  box-shadow:0 12px 30px rgba(255,107,0,.32);
+  display:flex; align-items:center; justify-content:center;
+  visibility:visible !important; opacity:1;
+}
+.leadGateSubmit:hover{background:#f46100 !important; filter:none}
+.leadGateConsent{display:block; margin-top:14px; color:#98a2b3; font-size:10px; line-height:1.45; font-weight:400;}
+.leadGateSubmit:disabled{opacity:.65; cursor:wait}
+@media(max-width:560px){
+  .leadGateOverlay{padding:12px; align-items:flex-end}
+  .leadGateModal{padding:24px 18px 20px; border-radius:22px 22px 16px 16px}
+  .leadGateModal h3{font-size:23px}
+}
