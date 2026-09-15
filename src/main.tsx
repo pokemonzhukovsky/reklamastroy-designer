@@ -16,7 +16,7 @@ const ALLOW_DOWNLOAD_WITHOUT_TILDA_BRIDGE = true;
 
 type DownloadKind = 'pdf' | 'svg';
 type ColorItem = [string, string, string];
-type FontItem = { name: string; family: string; sample: string; group: string };
+type FontItem = { name: string; family: string; sample: string; group: string; weight?: number };
 type DragMode = null | { type: 'sign'; dx: number; dy: number } | { type: 'point'; index: number } | { type: 'rotate'; angleOffset: number };
 
 const ORACAL_8500: ColorItem[] = [
@@ -280,6 +280,39 @@ const FONTS: FontItem[] = [
   { name: 'Poiret One Light', family: 'Poiret One, Arial, sans-serif', sample: 'Вывеска 123', group: 'Тонкие' },
   { name: 'Forum Display', family: 'Forum, Georgia, serif', sample: 'Вывеска 123', group: 'Тонкие' },
   { name: 'Oranienbaum Display', family: 'Oranienbaum, Georgia, serif', sample: 'Вывеска 123', group: 'Тонкие' },
+  // Новые гарнитуры с подтверждённой кириллицей и собственным начертанием.
+  { name: 'Advent Pro', family: 'Advent Pro, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Технологичные', weight: 900 },
+  { name: 'Alegreya Sans SC', family: 'Alegreya Sans SC, Arial, sans-serif', sample: 'Вывеска 123', group: 'Новые · Декоративные', weight: 900 },
+  { name: 'Alumni Sans Collegiate One', family: 'Alumni Sans Collegiate One, Arial Black, sans-serif', sample: 'Вывеска 123', group: 'Новые · Ретро', weight: 400 },
+  { name: 'Alumni Sans Pinstripe', family: 'Alumni Sans Pinstripe, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Ретро', weight: 400 },
+  { name: 'Alumni Sans SC', family: 'Alumni Sans SC, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Узкие', weight: 900 },
+  { name: 'Bona Nova SC', family: 'Bona Nova SC, Georgia, serif', sample: 'Вывеска 123', group: 'Новые · Антиква', weight: 700 },
+  { name: 'Climate Crisis', family: 'Climate Crisis, Arial Black, sans-serif', sample: 'Вывеска 123', group: 'Новые · Экспериментальные', weight: 400 },
+  { name: 'Comforter Brush', family: 'Comforter Brush, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 400 },
+  { name: 'Comic Relief', family: 'Comic Relief, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 700 },
+  { name: 'Days One', family: 'Days One, Arial Black, sans-serif', sample: 'Вывеска 123', group: 'Новые · Жирные', weight: 400 },
+  { name: 'DotGothic16', family: 'DotGothic16, monospace', sample: 'Вывеска 123', group: 'Новые · Пиксельные', weight: 400 },
+  { name: 'Great Vibes', family: 'Great Vibes, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 400 },
+  { name: 'Handjet', family: 'Handjet, monospace', sample: 'Вывеска 123', group: 'Новые · Пиксельные', weight: 900 },
+  { name: 'Kablammo', family: 'Kablammo, cursive', sample: 'Вывеска 123', group: 'Новые · Экспериментальные', weight: 400 },
+  { name: 'Martian Mono', family: 'Martian Mono, monospace', sample: 'Вывеска 123', group: 'Новые · Моноширинные', weight: 800 },
+  { name: 'Monomakh', family: 'Monomakh, Georgia, serif', sample: 'Вывеска 123', group: 'Новые · Декоративные', weight: 400 },
+  { name: 'Montserrat Underline', family: 'Montserrat Underline, Arial, sans-serif', sample: 'Вывеска 123', group: 'Новые · Акцидентные', weight: 900 },
+  { name: 'Oi', family: 'Oi, Arial Black, sans-serif', sample: 'Вывеска 123', group: 'Новые · Жирные', weight: 400 },
+  { name: 'Overpass Mono', family: 'Overpass Mono, monospace', sample: 'Вывеска 123', group: 'Новые · Технологичные', weight: 700 },
+  { name: 'Pattaya', family: 'Pattaya, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 400 },
+  { name: 'Pixelify Sans', family: 'Pixelify Sans, monospace', sample: 'Вывеска 123', group: 'Новые · Пиксельные', weight: 700 },
+  { name: 'Press Start 2P', family: 'Press Start 2P, monospace', sample: 'Вывеска 123', group: 'Новые · Пиксельные', weight: 400 },
+  { name: 'Rampart One', family: 'Rampart One, cursive', sample: 'Вывеска 123', group: 'Новые · Декоративные', weight: 400 },
+  { name: 'Reggae One', family: 'Reggae One, cursive', sample: 'Вывеска 123', group: 'Новые · Декоративные', weight: 400 },
+  { name: 'Ruda', family: 'Ruda, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Узкие жирные', weight: 900 },
+  { name: 'Science Gothic', family: 'Science Gothic, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Технологичные', weight: 900 },
+  { name: 'Shafarik', family: 'Shafarik, Georgia, serif', sample: 'Вывеска 123', group: 'Новые · Декоративные', weight: 400 },
+  { name: 'Shantell Sans', family: 'Shantell Sans, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 800 },
+  { name: 'Sofia Sans Semi Condensed', family: 'Sofia Sans Semi Condensed, Arial Narrow, sans-serif', sample: 'Вывеска 123', group: 'Новые · Узкие', weight: 900 },
+  { name: 'Stalinist One', family: 'Stalinist One, Arial Black, sans-serif', sample: 'Вывеска 123', group: 'Новые · Ретро', weight: 400 },
+  { name: 'Train One', family: 'Train One, Arial, sans-serif', sample: 'Вывеска 123', group: 'Новые · Контурные / неоновые', weight: 400 },
+  { name: 'Underdog', family: 'Underdog, cursive', sample: 'Вывеска 123', group: 'Новые · Рукописные', weight: 400 },
 ];
 
 const mm = (value: number) => `${Math.round(value)} мм`;
@@ -383,7 +416,7 @@ function fontCssWeight(value: string) {
   if (value === '__RobotoCondensed800__') return 800;
   if (value === '__RobotoCondensed900__') return 900;
   if (value.startsWith('Anton')) return 400;
-  return 900;
+  return FONTS.find(f => f.family === value)?.weight ?? 900;
 }
 
 function colorName(list: ColorItem[], hex: string) {
