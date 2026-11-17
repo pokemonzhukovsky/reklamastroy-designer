@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync, createPortal } from 'react-dom';
-import { Redo2, Undo2 } from 'lucide-react';
+import { ChevronDown, Redo2, Undo2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './styles.css';
@@ -840,6 +840,7 @@ function App() {
   const [leadError, setLeadError] = useState('');
   const [leadSending, setLeadSending] = useState(false);
   const [leadUnlocked, setLeadUnlocked] = useState(false);
+  const [showMobileScrollCue, setShowMobileScrollCue] = useState(false);
   const leadRequestIdRef = useRef<string>('');
 
   const captureEditorSnapshot = (): EditorSnapshot => ({
@@ -960,6 +961,35 @@ function App() {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [line1, line2, font, line2Font, face, line2Face, side, line2Side, line1HeightCm, line2HeightCm, lineGapCm, curve1, curve2, followCurve1, followCurve2, calibrationCm, line1HeightInput, line2HeightInput, lineGapInput, calibrationInput, lighting, night, twoLines, line2Align, facade, logo, logoAspect, logoHeightCm, logoHeightInput, logoPosition, substrateEnabled, substrateColor, substrateWidthMm, substrateHeightMm, substrateWidthInput, substrateHeightInput, substrateAutoSize, points, signPos, rotation, historyVersion]);
+
+  useEffect(() => {
+    const updateMobileScrollCue = () => {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const scrollHost = isMobile
+        ? document.querySelector<HTMLElement>('#root')
+        : document.querySelector<HTMLElement>('.panelPremium, .panel.left');
+      const scrollTop = scrollHost ? scrollHost.scrollTop : window.scrollY;
+      const scrollHeight = scrollHost ? scrollHost.scrollHeight : document.documentElement.scrollHeight;
+      const viewportHeight = scrollHost ? scrollHost.clientHeight : window.innerHeight;
+      const hasMoreContent = scrollHeight > viewportHeight + 80;
+      setShowMobileScrollCue(hasMoreContent && scrollTop < 80);
+    };
+    const getScrollHost = () => window.matchMedia('(max-width: 768px)').matches
+      ? document.querySelector<HTMLElement>('#root')
+      : document.querySelector<HTMLElement>('.panelPremium, .panel.left');
+    const scrollHost = getScrollHost();
+    updateMobileScrollCue();
+    window.addEventListener('scroll', updateMobileScrollCue, { passive: true });
+    scrollHost?.addEventListener('scroll', updateMobileScrollCue, { passive: true });
+    window.addEventListener('resize', updateMobileScrollCue);
+    const refreshTimer = window.setTimeout(updateMobileScrollCue, 250);
+    return () => {
+      window.removeEventListener('scroll', updateMobileScrollCue);
+      scrollHost?.removeEventListener('scroll', updateMobileScrollCue);
+      window.removeEventListener('resize', updateMobileScrollCue);
+      window.clearTimeout(refreshTimer);
+    };
+  }, [facade, twoLines, logo, substrateEnabled, fontMeasureTick]);
 
   // Проект больше не сохраняется в браузере: при каждом обновлении страницы конструктор открывается с чистыми настройками.
   useEffect(() => {
@@ -2624,6 +2654,26 @@ function App() {
           {facade && <SignGraphic />}
         </div>
       </section>
+      <button
+        type="button"
+        className={`mobileScrollCue${showMobileScrollCue ? ' isVisible' : ''}`}
+        aria-label="Прокрутить настройки вниз"
+        title="Прокрутить вниз"
+        onClick={() => {
+          const isMobile = window.matchMedia('(max-width: 768px)').matches;
+          const scrollHost = isMobile
+            ? document.querySelector<HTMLElement>('#root')
+            : document.querySelector<HTMLElement>('.panelPremium, .panel.left');
+          const distance = Math.max(320, window.innerHeight * 0.7);
+          if (scrollHost && scrollHost.scrollHeight > scrollHost.clientHeight + 80) {
+            scrollHost.scrollBy({ top: distance, behavior: 'smooth' });
+          } else {
+            window.scrollBy({ top: distance, behavior: 'smooth' });
+          }
+        }}
+      >
+        <ChevronDown size={24} strokeWidth={2.8} aria-hidden="true" />
+      </button>
 
     </main>
 

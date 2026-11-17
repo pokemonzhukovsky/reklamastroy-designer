@@ -51,6 +51,115 @@ body.pdf-exporting .stage{box-shadow:none!important;border-radius:0!important;ma
 .pdfFacadeStage .pdfWatermark{z-index:4}
 .logoRight{margin-right:0;margin-left:.12em}
 
+/* The mobile cue is an unobtrusive scroll hint, not a second action button. */
+.mobileScrollCue{
+  position:fixed!important;
+  left:174px!important;
+  bottom:68px!important;
+  z-index:45!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:24px!important;
+  height:24px!important;
+  min-width:24px!important;
+  min-height:24px!important;
+  max-width:24px!important;
+  max-height:24px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#69727c!important;
+  transform:translateX(-50%)!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  isolation:isolate;
+}
+.mobileScrollCue::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:50%;
+  top:50%;
+  width:320px;
+  height:1px;
+  background:#d7dce2;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.mobileScrollCue.isVisible{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+.mobileScrollCue svg{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:22px;
+  height:22px;
+  padding:0;
+  background:transparent;
+}
+@media (max-width:768px){
+  #root .mobileScrollCue{
+    position:fixed!important;
+    left:50%!important;
+    top:auto!important;
+    bottom:88px!important;
+    width:24px!important;
+    height:24px!important;
+    min-width:24px!important;
+    min-height:24px!important;
+    max-width:24px!important;
+    max-height:24px!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    color:#69727c!important;
+    transform:translateX(-50%)!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    isolation:isolate;
+  }
+  #root .mobileScrollCue::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    left:50%;
+    top:50%;
+    width:100vw;
+    height:1px;
+    background:#d7dce2;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  #root .mobileScrollCue.isVisible{
+    align-items:center!important;
+    justify-content:center!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    animation:none!important;
+  }
+  #root .mobileScrollCue svg{
+    position:relative;
+    z-index:1;
+    display:block;
+    width:22px;
+    height:22px;
+    padding:0;
+    background:transparent;
+  }
+}
+
 /* interaction clarity patch v3.10 */
 .moveSignBtn{background:#f4f6f8!important;color:#20242a!important;border:1px solid #d5dde5!important}
 .moveSignBtn.active{background:#20242a!important;color:#fff!important;border-color:#20242a!important}
