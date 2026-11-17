@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { flushSync, createPortal } from 'react-dom';
+import { Redo2, Undo2 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import './styles.css';
@@ -17,7 +18,24 @@ const ALLOW_DOWNLOAD_WITHOUT_TILDA_BRIDGE = true;
 type DownloadKind = 'pdf' | 'svg';
 type ColorItem = [string, string, string];
 type FontItem = { name: string; family: string; sample: string; group: string; weight?: number };
-type DragMode = null | { type: 'sign'; dx: number; dy: number } | { type: 'point'; index: number } | { type: 'rotate'; angleOffset: number };
+type EditorSnapshot = {
+  line1: string; line2: string; font: string; line2Font: string;
+  face: string; line2Face: string; side: string; line2Side: string;
+  line1HeightCm: number; line2HeightCm: number; lineGapCm: number;
+  curve1: number; curve2: number; followCurve1: boolean; followCurve2: boolean;
+  calibrationCm: number; line1HeightInput: string; line2HeightInput: string;
+  lineGapInput: string; calibrationInput: string; lighting: Lighting; night: boolean;
+  twoLines: boolean; line2Align: Line2Align; facade: string; logo: string; logoAspect: number;
+  logoHeightCm: number; logoHeightInput: string; logoPosition: LogoPosition;
+  substrateEnabled: boolean; substrateColor: string; substrateWidthMm: number;
+  substrateHeightMm: number; substrateWidthInput: string; substrateHeightInput: string;
+  substrateAutoSize: boolean; points: Point[]; signPos: Point; rotation: number;
+};
+type DragMode = null
+  | { type: 'sign'; dx: number; dy: number }
+  | { type: 'point'; index: number }
+  | { type: 'rotate'; angleOffset: number }
+  | { type: 'resize'; cornerX: -1 | 1; cornerY: -1 | 1; startX: number; startY: number; startWidth: number; startHeight: number; baseline: EditorSnapshot };
 
 const ORACAL_8500: ColorItem[] = [
   ['010', 'Белый / White', '#e7e8e5'],
@@ -809,6 +827,11 @@ function App() {
   const pdfRef = useRef<HTMLDivElement>(null);
   const facadeInputRef = useRef<HTMLInputElement>(null);
   const liveLettersRef = useRef<HTMLDivElement | null>(null);
+  const historyRef = useRef<{ past: EditorSnapshot[]; future: EditorSnapshot[] }>({ past: [], future: [] });
+  const committedSnapshotRef = useRef<EditorSnapshot | null>(null);
+  const dragStartSnapshotRef = useRef<EditorSnapshot | null>(null);
+  const historyTimerRef = useRef<number | null>(null);
+  const [historyVersion, setHistoryVersion] = useState(0);
   const [facadeDragOver, setFacadeDragOver] = useState(false);
   const [downloadGateOpen, setDownloadGateOpen] = useState(false);
   const [pendingDownload, setPendingDownload] = useState<DownloadKind | null>(null);
@@ -818,6 +841,125 @@ function App() {
   const [leadSending, setLeadSending] = useState(false);
   const [leadUnlocked, setLeadUnlocked] = useState(false);
   const leadRequestIdRef = useRef<string>('');
+
+  const captureEditorSnapshot = (): EditorSnapshot => ({
+    line1, line2, font, line2Font, face, line2Face, side, line2Side,
+    line1HeightCm, line2HeightCm, lineGapCm, curve1, curve2, followCurve1, followCurve2,
+    calibrationCm, line1HeightInput, line2HeightInput, lineGapInput, calibrationInput,
+    lighting, night, twoLines, line2Align, facade, logo, logoAspect, logoHeightCm, logoHeightInput, logoPosition,
+    substrateEnabled, substrateColor, substrateWidthMm, substrateHeightMm, substrateWidthInput, substrateHeightInput, substrateAutoSize,
+    points, signPos, rotation
+  });
+  const latestEditorSnapshotRef = useRef<EditorSnapshot | null>(null);
+  latestEditorSnapshotRef.current = captureEditorSnapshot();
+
+  const snapshotsMatch = (a: EditorSnapshot, b: EditorSnapshot) => {
+    const { points: pointsA, signPos: posA, ...valuesA } = a;
+    const { points: pointsB, signPos: posB, ...valuesB } = b;
+    return Object.keys(valuesA).every(key => valuesA[key as keyof typeof valuesA] === valuesB[key as keyof typeof valuesB])
+      && posA.x === posB.x && posA.y === posB.y
+      && pointsA.length === pointsB.length
+      && pointsA.every((point, index) => point.x === pointsB[index].x && point.y === pointsB[index].y);
+  };
+
+  const clearHistoryTimer = () => {
+    if (historyTimerRef.current !== null) window.clearTimeout(historyTimerRef.current);
+    historyTimerRef.current = null;
+  };
+
+  const restoreEditorSnapshot = (snapshot: EditorSnapshot) => {
+    setLine1(snapshot.line1); setLine2(snapshot.line2); setFont(snapshot.font); setLine2Font(snapshot.line2Font);
+    setFace(snapshot.face); setLine2Face(snapshot.line2Face); setSide(snapshot.side); setLine2Side(snapshot.line2Side);
+    setLine1HeightCm(snapshot.line1HeightCm); setLine2HeightCm(snapshot.line2HeightCm); setLineGapCm(snapshot.lineGapCm);
+    setCurve1(snapshot.curve1); setCurve2(snapshot.curve2); setFollowCurve1(snapshot.followCurve1); setFollowCurve2(snapshot.followCurve2);
+    setCalibrationCm(snapshot.calibrationCm); setLine1HeightInput(snapshot.line1HeightInput); setLine2HeightInput(snapshot.line2HeightInput);
+    setLineGapInput(snapshot.lineGapInput); setCalibrationInput(snapshot.calibrationInput); setLighting(snapshot.lighting); setNight(snapshot.night);
+    setTwoLines(snapshot.twoLines); setLine2Align(snapshot.line2Align); setFacade(snapshot.facade); setLogo(snapshot.logo);
+    setLogoAspect(snapshot.logoAspect); setLogoHeightCm(snapshot.logoHeightCm); setLogoHeightInput(snapshot.logoHeightInput); setLogoPosition(snapshot.logoPosition);
+    setSubstrateEnabled(snapshot.substrateEnabled); setSubstrateColor(snapshot.substrateColor);
+    setSubstrateWidthMm(snapshot.substrateWidthMm); setSubstrateHeightMm(snapshot.substrateHeightMm);
+    setSubstrateWidthInput(snapshot.substrateWidthInput); setSubstrateHeightInput(snapshot.substrateHeightInput); setSubstrateAutoSize(snapshot.substrateAutoSize);
+    setPoints(snapshot.points); setSignPos(snapshot.signPos); setRotation(snapshot.rotation);
+  };
+
+  const pushPastSnapshot = (snapshot: EditorSnapshot) => {
+    const past = historyRef.current.past;
+    if (past.length >= 50) past.shift();
+    past.push(snapshot);
+    historyRef.current.future = [];
+    setHistoryVersion(version => version + 1);
+  };
+
+  const flushPendingHistory = () => {
+    clearHistoryTimer();
+    const current = latestEditorSnapshotRef.current || captureEditorSnapshot();
+    const committed = committedSnapshotRef.current;
+    if (committed && !snapshotsMatch(committed, current)) pushPastSnapshot(committed);
+    committedSnapshotRef.current = current;
+  };
+
+  const undo = () => {
+    flushPendingHistory();
+    const previous = historyRef.current.past.pop();
+    if (!previous) return;
+    const current = captureEditorSnapshot();
+    historyRef.current.future.push(current);
+    restoreEditorSnapshot(previous);
+    committedSnapshotRef.current = previous;
+    setHistoryVersion(version => version + 1);
+  };
+
+  const redo = () => {
+    flushPendingHistory();
+    const next = historyRef.current.future.pop();
+    if (!next) return;
+    const current = captureEditorSnapshot();
+    historyRef.current.past.push(current);
+    restoreEditorSnapshot(next);
+    committedSnapshotRef.current = next;
+    setHistoryVersion(version => version + 1);
+  };
+
+  useEffect(() => {
+    const current = captureEditorSnapshot();
+    if (!committedSnapshotRef.current) {
+      committedSnapshotRef.current = current;
+      return;
+    }
+    if (drag) {
+      clearHistoryTimer();
+      return;
+    }
+    const committed = committedSnapshotRef.current;
+    if (snapshotsMatch(committed, current)) return;
+    clearHistoryTimer();
+    historyTimerRef.current = window.setTimeout(() => {
+      pushPastSnapshot(committed);
+      committedSnapshotRef.current = current;
+      historyTimerRef.current = null;
+    }, 300);
+    return clearHistoryTimer;
+  }, [line1, line2, font, line2Font, face, line2Face, side, line2Side, line1HeightCm, line2HeightCm, lineGapCm, curve1, curve2, followCurve1, followCurve2, calibrationCm, line1HeightInput, line2HeightInput, lineGapInput, calibrationInput, lighting, night, twoLines, line2Align, facade, logo, logoAspect, logoHeightCm, logoHeightInput, logoPosition, substrateEnabled, substrateColor, substrateWidthMm, substrateHeightMm, substrateWidthInput, substrateHeightInput, substrateAutoSize, points, signPos, rotation, drag]);
+
+  useEffect(() => () => clearHistoryTimer(), []);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!(event.metaKey || event.ctrlKey) || event.altKey) return;
+      const target = event.target as HTMLElement | null;
+      if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+      const key = event.key.toLowerCase();
+      if (key === 'z' && event.shiftKey || key === 'y') {
+        event.preventDefault();
+        redo();
+      } else if (key === 'z') {
+        event.preventDefault();
+        undo();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [line1, line2, font, line2Font, face, line2Face, side, line2Side, line1HeightCm, line2HeightCm, lineGapCm, curve1, curve2, followCurve1, followCurve2, calibrationCm, line1HeightInput, line2HeightInput, lineGapInput, calibrationInput, lighting, night, twoLines, line2Align, facade, logo, logoAspect, logoHeightCm, logoHeightInput, logoPosition, substrateEnabled, substrateColor, substrateWidthMm, substrateHeightMm, substrateWidthInput, substrateHeightInput, substrateAutoSize, points, signPos, rotation, historyVersion]);
 
   // Проект больше не сохраняется в браузере: при каждом обновлении страницы конструктор открывается с чистыми настройками.
   useEffect(() => {
@@ -965,6 +1107,60 @@ function App() {
         const cy = signPos.y + visualSignHeightPx / 2;
         setRotation(Math.round(Math.atan2(p.y - cy, p.x - cx) * 180 / Math.PI + drag.angleOffset));
       }
+      if (drag.type === 'resize') {
+        const { baseline, cornerX, cornerY, startWidth, startHeight } = drag;
+        const angle = baseline.rotation * Math.PI / 180;
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+        const toLocal = (point: Point, width: number, height: number): Point => {
+          const dx = point.x - baseline.signPos.x;
+          const dy = point.y - (baseline.signPos.y + height / 2);
+          return {
+            x: cos * dx + sin * dy,
+            y: -sin * dx + cos * dy + height / 2
+          };
+        };
+        const startCorner = { x: cornerX > 0 ? startWidth : 0, y: cornerY > 0 ? startHeight : 0 };
+        const anchor = { x: cornerX > 0 ? 0 : startWidth, y: cornerY > 0 ? 0 : startHeight };
+        const localPointer = toLocal(p, startWidth, startHeight);
+        const startVector = { x: startCorner.x - anchor.x, y: startCorner.y - anchor.y };
+        const currentVector = { x: localPointer.x - anchor.x, y: localPointer.y - anchor.y };
+        const ratioX = currentVector.x / startVector.x;
+        const ratioY = currentVector.y / startVector.y;
+        const xDelta = Math.abs(currentVector.x - startVector.x) / Math.max(1, Math.abs(startVector.x));
+        const yDelta = Math.abs(currentVector.y - startVector.y) / Math.max(1, Math.abs(startVector.y));
+        const factor = clamp(xDelta >= yDelta ? ratioX : ratioY, 0.25, 4);
+        const nextLine1 = Math.max(1, baseline.line1HeightCm * factor);
+        const nextLine2 = Math.max(1, baseline.line2HeightCm * factor);
+        const nextGap = Math.max(0, baseline.lineGapCm * factor);
+        const nextLogo = Math.max(1, baseline.logoHeightCm * factor);
+        setLine1HeightCm(nextLine1); setLine1HeightInput(String(Math.round(nextLine1)));
+        setLine2HeightCm(nextLine2); setLine2HeightInput(String(Math.round(nextLine2)));
+        setLineGapCm(nextGap); setLineGapInput(String(Math.round(nextGap)));
+        setLogoHeightCm(nextLogo); setLogoHeightInput(String(Math.round(nextLogo)));
+        if (baseline.substrateEnabled) {
+          setSubstrateAutoSize(false);
+          const nextSubstrateWidth = Math.max(1, baseline.substrateWidthMm * factor);
+          const nextSubstrateHeight = Math.max(1, baseline.substrateHeightMm * factor);
+          setSubstrateWidthMm(nextSubstrateWidth); setSubstrateWidthInput(String(Math.round(nextSubstrateWidth)));
+          setSubstrateHeightMm(nextSubstrateHeight); setSubstrateHeightInput(String(Math.round(nextSubstrateHeight)));
+        }
+        const nextWidth = startWidth * factor;
+        const nextHeight = startHeight * factor;
+        const anchorWorld = {
+          x: baseline.signPos.x + cos * anchor.x - sin * (anchor.y - startHeight / 2),
+          y: baseline.signPos.y + startHeight / 2 + sin * anchor.x + cos * (anchor.y - startHeight / 2)
+        };
+        const nextAnchor = { x: cornerX > 0 ? 0 : nextWidth, y: cornerY > 0 ? 0 : nextHeight };
+        const nextPos = {
+          x: anchorWorld.x - cos * nextAnchor.x + sin * (nextAnchor.y - nextHeight / 2),
+          y: anchorWorld.y - nextHeight / 2 - sin * nextAnchor.x - cos * (nextAnchor.y - nextHeight / 2)
+        };
+        setSignPos({
+          x: clamp(nextPos.x, 0, stageSize.width - 40),
+          y: clamp(nextPos.y, 0, stageSize.height - 40)
+        });
+      }
     };
     const mouseMove = (e: MouseEvent) => applyDrag(e.clientX, e.clientY);
     const touchMove = (e: TouchEvent) => {
@@ -973,7 +1169,17 @@ function App() {
       const t = e.touches[0];
       applyDrag(t.clientX, t.clientY);
     };
-    const up = () => setDrag(null);
+    const up = () => {
+      if (drag) {
+        clearHistoryTimer();
+        const current = latestEditorSnapshotRef.current || captureEditorSnapshot();
+        const baseline = dragStartSnapshotRef.current;
+        if (baseline && !snapshotsMatch(baseline, current)) pushPastSnapshot(baseline);
+        committedSnapshotRef.current = current;
+        dragStartSnapshotRef.current = null;
+      }
+      setDrag(null);
+    };
     window.addEventListener('mousemove', mouseMove);
     window.addEventListener('mouseup', up);
     window.addEventListener('touchmove', touchMove, { passive: false });
@@ -986,7 +1192,7 @@ function App() {
       window.removeEventListener('touchend', up);
       window.removeEventListener('touchcancel', up);
     };
-  }, [drag, stageSize, signPos]);
+  }, [drag, stageSize, signPos, rotation]);
 
   const lines = useMemo(() => twoLines ? [line1 || ' ', line2 || ' '] : [line1 || ' '], [line1, line2, twoLines]);
   const lineHeightsCm = useMemo(() => twoLines ? [line1HeightCm, line2HeightCm] : [line1HeightCm], [twoLines, line1HeightCm, line2HeightCm]);
@@ -1213,6 +1419,43 @@ function App() {
   const displayWidthMm = substrateEnabled ? effectiveSubstrateWidthMm : contentWidthMm;
   const displayHeightMm = substrateEnabled ? effectiveSubstrateHeightMm : contentHeightMm;
 
+  // При этом сценарии точки стоят на самой вывеске: введённое расстояние
+  // задаёт её габарит по направлению между точками. Применяем коэффициент
+  // один раз после завершения выбора точек, сохраняя пропорции макета.
+  const calibrationContentKey = [line1, line2, font, line2Font, twoLines, logo, logoAspect, logoPosition].join('|');
+  const calibrationApplyKey = points.length === 2
+    ? points.map(point => point.x + ':' + point.y).join(':') + ':' + calibrationCm + ':' + calibrationContentKey
+    : '';
+  const calibrationAppliedRef = useRef('');
+  useEffect(() => {
+    if (points.length !== 2 || !exact || !calibrationApplyKey || calibrationAppliedRef.current === calibrationApplyKey) return;
+    const axis = Math.abs(points[1].x - points[0].x) >= Math.abs(points[1].y - points[0].y) ? 'width' : 'height';
+    const currentSize = axis === 'width' ? displayWidthMm : displayHeightMm;
+    const factor = calibrationCm / Math.max(1, currentSize);
+    calibrationAppliedRef.current = calibrationApplyKey;
+    if (!Number.isFinite(factor) || Math.abs(factor - 1) < 0.001) return;
+    const targetWidthPx = visualSignWidthPx * factor;
+    const targetHeightPx = visualSignHeightPx * factor;
+    const pointCenterX = (points[0].x + points[1].x) / 2;
+    const pointCenterY = (points[0].y + points[1].y) / 2;
+    setSignPos({
+      x: clamp(axis === 'width' ? Math.min(points[0].x, points[1].x) : pointCenterX - targetWidthPx / 2, 0, Math.max(0, stageSize.width - targetWidthPx)),
+      y: clamp(axis === 'height' ? Math.min(points[0].y, points[1].y) : pointCenterY - targetHeightPx / 2, 0, Math.max(0, stageSize.height - targetHeightPx))
+    });
+    setLine1HeightCm(value => Math.max(1, value * factor));
+    setLine1HeightInput(String(Math.round(line1HeightCm * factor)));
+    if (twoLines) {
+      setLine2HeightCm(value => Math.max(1, value * factor));
+      setLine2HeightInput(String(Math.round(line2HeightCm * factor)));
+      setLineGapCm(value => Math.max(0, value * factor));
+      setLineGapInput(String(Math.round(lineGapCm * factor)));
+    }
+    if (logo) {
+      setLogoHeightCm(value => Math.max(1, value * factor));
+      setLogoHeightInput(String(Math.round(logoHeightCm * factor)));
+    }
+  }, [calibrationApplyKey, calibrationCm, displayHeightMm, displayWidthMm, exact, line1HeightCm, line2HeightCm, lineGapCm, logo, logoHeightCm, points, stageSize.height, stageSize.width, twoLines, visualSignHeightPx, visualSignWidthPx]);
+
   // Размеры для чертежа в PDF: общая длина + отдельно высота
   // заглавных и строчных букв.
   const uppercaseHeightsPx = lineFontSizesPx.map((fs, i) => getGlyphMetrics('К', fs, lineFonts[i] || font).height);
@@ -1354,11 +1597,30 @@ function App() {
     if (e.button !== 0 || !stageRef.current) return;
     e.stopPropagation();
     const p = getStagePoint(e.clientX, e.clientY);
+    dragStartSnapshotRef.current = captureEditorSnapshot();
     setDrag({ type: 'sign', dx: p.x - signPos.x, dy: p.y - signPos.y });
+  };
+  const startResize = (e: React.MouseEvent<HTMLButtonElement>, cornerX: -1 | 1, cornerY: -1 | 1) => {
+    if (e.button !== 0 || !stageRef.current) return;
+    e.stopPropagation();
+    const p = getStagePoint(e.clientX, e.clientY);
+    const baseline = captureEditorSnapshot();
+    dragStartSnapshotRef.current = baseline;
+    setDrag({ type: 'resize', cornerX, cornerY, startX: p.x, startY: p.y, startWidth: visualSignWidthPx, startHeight: visualSignHeightPx, baseline });
+  };
+  const startResizeTouch = (e: React.TouchEvent<HTMLButtonElement>, cornerX: -1 | 1, cornerY: -1 | 1) => {
+    if (!e.touches.length || !stageRef.current) return;
+    e.stopPropagation();
+    const t = e.touches[0];
+    const p = getStagePoint(t.clientX, t.clientY);
+    const baseline = captureEditorSnapshot();
+    dragStartSnapshotRef.current = baseline;
+    setDrag({ type: 'resize', cornerX, cornerY, startX: p.x, startY: p.y, startWidth: visualSignWidthPx, startHeight: visualSignHeightPx, baseline });
   };
   const startPointDrag = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
     if (e.button !== 0) return;
     e.stopPropagation();
+    dragStartSnapshotRef.current = captureEditorSnapshot();
     setDrag({ type: 'point', index });
   };
   const startSignTouch = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -1366,11 +1628,13 @@ function App() {
     e.stopPropagation();
     const t = e.touches[0];
     const p = getStagePoint(t.clientX, t.clientY);
+    dragStartSnapshotRef.current = captureEditorSnapshot();
     setDrag({ type: 'sign', dx: p.x - signPos.x, dy: p.y - signPos.y });
   };
   const startPointTouch = (e: React.TouchEvent<HTMLDivElement>, index: number) => {
     if (!e.touches.length) return;
     e.stopPropagation();
+    dragStartSnapshotRef.current = captureEditorSnapshot();
     setDrag({ type: 'point', index });
   };
 
@@ -2105,6 +2369,18 @@ function App() {
       onMouseDown={pdfMode ? undefined : startSignDrag}
       onTouchStart={pdfMode ? undefined : startSignTouch}
     >
+      {!pdfMode && <>
+        {([[-1, -1], [1, -1], [-1, 1], [1, 1]] as const).map(([cornerX, cornerY]) => (
+          <button
+            key={`${cornerX}-${cornerY}`}
+            type="button"
+            className={`resizeHandle resizeHandle${cornerY < 0 ? 'Top' : 'Bottom'}${cornerX < 0 ? 'Left' : 'Right'}`}
+            aria-label="Изменить размер макета"
+            onMouseDown={e => startResize(e, cornerX, cornerY)}
+            onTouchStart={e => startResizeTouch(e, cornerX, cornerY)}
+          />
+        ))}
+      </>}
       {!pdfMode && <button className="rotateHandle" style={{ top: heightPx + 78, left: widthPx + 86, transform: 'none' }} title="Зажмите и поверните вывеску" onMouseDown={(e) => {
         e.stopPropagation();
         if (!stageRef.current) return;
@@ -2112,6 +2388,7 @@ function App() {
         const cx = signPos.x + visualSignWidthPx / 2;
         const cy = signPos.y + visualSignHeightPx / 2;
         const currentAngle = Math.atan2(p.y - cy, p.x - cx) * 180 / Math.PI;
+        dragStartSnapshotRef.current = captureEditorSnapshot();
         setDrag({ type: 'rotate', angleOffset: rotation - currentAngle });
       }} onTouchStart={(e) => {
         if (!e.touches.length || !stageRef.current) return;
@@ -2121,6 +2398,7 @@ function App() {
         const cx = signPos.x + visualSignWidthPx / 2;
         const cy = signPos.y + visualSignHeightPx / 2;
         const currentAngle = Math.atan2(p.y - cy, p.x - cx) * 180 / Math.PI;
+        dragStartSnapshotRef.current = captureEditorSnapshot();
         setDrag({ type: 'rotate', angleOffset: rotation - currentAngle });
       }}>↻</button>}
       <svg
@@ -2245,10 +2523,10 @@ function App() {
   return <>
     <main className="app constructorFrame">
       <aside className="panel left panelPremium">
-        <div className="sectionBadge">Укажите известный размер на фото, например ширину окна или двери</div>
-        <div className="hintBox"><b>Поставьте 2 точки</b><span>Отметьте известный размер на фото: ширину окна, двери или витрины. Точки можно двигать мышкой.</span></div>
-        <button className={placingPoints ? 'active' : ''} onClick={() => { if (!placingPoints) setPoints([]); setPlacingPoints(v => !v); }}>{placingPoints ? 'Кликните 2 точки на фото' : 'Калибровать по 2 точкам'}</button>
-        <label>Реальный размер между точками, мм<input
+        <div className="sectionBadge">Задайте размер вывески по фото</div>
+        <div className="hintBox"><b>Поставьте 2 точки на границах вывески</b><span>Отметьте на фото ширину или высоту самой вывески. Введённое значение будет применено к этому размеру.</span></div>
+        <button className={placingPoints ? 'active' : ''} onClick={() => { if (!placingPoints) setPoints([]); setPlacingPoints(v => !v); }}>{placingPoints ? 'Кликните 2 точки на фото' : 'Задать размер по 2 точкам'}</button>
+        <label>Размер вывески между точками, мм<input
           type="number"
           min="1"
           value={calibrationInput}
@@ -2321,10 +2599,19 @@ function App() {
       </aside>
 
       <section className="workspace">
+        <div className="historyToolbar" aria-label="История действий">
+          <button type="button" className="historyButton" onClick={undo} disabled={historyRef.current.past.length === 0} title="Отменить последнее действие (Ctrl/Cmd+Z)">
+            <Undo2 size={17} aria-hidden="true" /> <span>Назад</span>
+          </button>
+          <button type="button" className="historyButton" onClick={redo} disabled={historyRef.current.future.length === 0} title="Повторить действие (Ctrl/Cmd+Shift+Z)">
+            <Redo2 size={17} aria-hidden="true" /> <span>Вперёд</span>
+          </button>
+          <span className="historyHint">Изменения можно отменить сочетанием Ctrl/Cmd+Z</span>
+        </div>
         <div className={'stage ' + (night ? 'night' : '') + (facadeDragOver ? ' facadeDragOver' : '')} ref={stageRef} onClick={clickStage} onDragOver={onStageDragOver} onDragLeave={onStageDragLeave} onDrop={onStageDrop}>
           <input ref={facadeInputRef} className="hiddenFacadeInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/heif,image/heic" onChange={onFacade}/>
           <div className={'calibrationStatus ' + (exact ? 'calibrated' : 'notCalibrated')}>
-            <i />{exact ? 'Масштаб откалиброван' : 'Масштаб не откалиброван'}
+            <i />{exact ? 'Размер вывески задан' : 'Размер вывески не задан'}
           </div>
           <div className="stageModeSwitch" onClick={e => e.stopPropagation()}>
             <button type="button" onClick={() => setNight(false)} className={!night ? 'active' : ''}>☀ День</button>

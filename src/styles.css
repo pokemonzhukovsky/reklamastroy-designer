@@ -15,6 +15,25 @@
 
 .leftSummary{margin-top:12px}
 
+/* Editor history and resize controls */
+.historyToolbar{min-height:54px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:#fff;border-bottom:1px solid #dfe5ec}
+.historyButton{width:auto!important;display:inline-flex!important;align-items:center;justify-content:center;gap:7px;margin:0!important;padding:9px 12px!important;border:1px solid #d8e0e8!important;border-radius:11px!important;background:#fff!important;color:#20242a!important;font-weight:850!important}
+.historyButton:hover:not(:disabled){border-color:#ff6a00!important;background:#fff7ef!important}
+.historyButton:disabled{opacity:.45;cursor:not-allowed}
+.workspace .historyToolbar .historyButton{background:#fff!important;color:#20242a!important;border-color:#d8e0e8!important;box-shadow:none!important;border-radius:11px!important}
+.workspace .historyToolbar .historyButton:hover:not(:disabled){background:#fff7ef!important;border-color:#ff6a00!important}
+.historyHint{color:#697580;font-size:12px;font-weight:700;margin-left:4px}
+.resizeHandle{position:absolute;width:12px;height:12px;padding:0;border:1.5px solid #fff;border-radius:50%;background:#ff6a00;box-shadow:0 2px 6px rgba(255,106,0,.3);z-index:31;cursor:nwse-resize;touch-action:none}
+.sign .resizeHandle{display:block;width:12px;height:12px;min-width:12px;min-height:12px;margin:0;padding:0;border:1.5px solid #fff;border-radius:50%;background:#ff6a00;color:transparent;box-shadow:0 2px 6px rgba(255,106,0,.3);line-height:9px}
+.sign .resizeHandle:hover{transform:scale(1.1)}
+.resizeHandleTopLeft{left:-6px;top:-6px}.resizeHandleTopRight{right:-6px;top:-6px;cursor:nesw-resize}.resizeHandleBottomLeft{left:-6px;bottom:-6px;cursor:nesw-resize}.resizeHandleBottomRight{right:-6px;bottom:-6px}
+.sign > .resizeHandle{position:absolute!important;display:block!important;width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;max-width:12px!important;max-height:12px!important;padding:0!important;margin:0!important;border:1.5px solid #fff!important;border-radius:50%!important;line-height:9px!important}
+.sign > .resizeHandleTopLeft{left:-6px!important;right:auto!important;top:-6px!important;bottom:auto!important}.sign > .resizeHandleTopRight{left:auto!important;right:-6px!important;top:-6px!important;bottom:auto!important}.sign > .resizeHandleBottomLeft{left:-6px!important;right:auto!important;top:auto!important;bottom:-6px!important}.sign > .resizeHandleBottomRight{left:auto!important;right:-6px!important;top:auto!important;bottom:-6px!important}
+.constructorFrame .sign > .resizeHandle{width:12px!important;height:12px!important;min-width:12px!important;max-width:12px!important;min-height:12px!important;max-height:12px!important;padding:0!important;margin:0!important;font-size:0!important;border-radius:50%!important;transform:none!important;box-sizing:border-box!important}
+.constructorFrame .sign > button.resizeHandle{width:12px!important;height:12px!important;min-width:12px!important;max-width:12px!important;min-height:12px!important;max-height:12px!important;padding:0!important;margin:0!important}
+.constructorFrame .sign > button.resizeHandle.resizeHandleTopLeft,.constructorFrame .sign > button.resizeHandle.resizeHandleTopRight,.constructorFrame .sign > button.resizeHandle.resizeHandleBottomLeft,.constructorFrame .sign > button.resizeHandle.resizeHandleBottomRight{width:12px!important;height:12px!important;padding:0!important;margin:0!important}
+#root .constructorFrame .sign > button.resizeHandle{display:block!important;width:12px!important;height:12px!important;min-width:12px!important;max-width:12px!important;min-height:12px!important;max-height:12px!important;padding:0!important;margin:0!important;font-size:0!important;box-sizing:border-box!important}
+
 /* PDF stability patch v3.7 */
 body.pdf-exporting .point,
 body.pdf-exporting .rotateHandle,
@@ -3248,12 +3267,12 @@ body{
   }
   .facade{object-fit:contain!important;}
 
-  /* Крупнее зоны касания точек, визуально точки остаются аккуратными */
+  /* Точки калибровки остаются тонкими; увеличиваем только область жеста. */
   .point{
-    width:14px!important;
-    height:14px!important;
-    border-width:2px!important;
-    box-shadow:0 0 0 10px rgba(255,106,0,.14),0 4px 12px rgba(255,106,0,.34)!important;
+    width:8px!important;
+    height:8px!important;
+    border-width:1px!important;
+    box-shadow:0 0 0 4px rgba(255,106,0,.1),0 2px 6px rgba(255,106,0,.25)!important;
   }
   .rotateHandle{
     width:44px!important;
@@ -3415,3 +3434,74 @@ body{
 
 /* v3.78 — поиск и счётчик в расширенном каталоге шрифтов */
 .fontSearchWrap{position:sticky;top:-8px;z-index:4;background:#fff;padding:8px 4px 10px;border-bottom:1px solid #e7ebef;margin-bottom:6px}.fontSearchWrap input{margin:0!important;height:42px!important;padding:9px 11px!important;border-radius:11px!important;font-size:13px!important}.fontSearchWrap small{display:block;margin-top:6px;color:#7b8794;font-size:10px;font-weight:800}.fontMenuPortal{overscroll-behavior:contain}.fontMenuPortal>button{min-height:58px}.fontMenuPortal>button em{font-size:25px!important}
+
+/* v3.79 — unobtrusive resize marks in the editor; never include them in exports */
+.constructorFrame .sign > button.resizeHandle{
+  width:16px!important;
+  height:16px!important;
+  min-width:16px!important;
+  min-height:16px!important;
+  max-width:16px!important;
+  max-height:16px!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:transparent!important;
+  line-height:0!important;
+}
+.constructorFrame .sign > button.resizeHandle::before,
+.constructorFrame .sign > button.resizeHandle::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  display:block;
+  background:rgba(255,106,0,.46);
+  pointer-events:none;
+}
+.constructorFrame .sign > button.resizeHandle::before{
+  width:8px;
+  height:1px;
+  transform:translate(-50%,-50%);
+}
+.constructorFrame .sign > button.resizeHandle::after{
+  width:1px;
+  height:8px;
+  transform:translate(-50%,-50%);
+}
+.constructorFrame .sign > button.resizeHandle:hover::before,
+.constructorFrame .sign > button.resizeHandle:hover::after{
+  background:rgba(255,106,0,.72);
+}
+#root .constructorFrame .sign > button.resizeHandle,
+#root .constructorFrame .sign > button.resizeHandle.resizeHandleTopLeft,
+#root .constructorFrame .sign > button.resizeHandle.resizeHandleTopRight,
+#root .constructorFrame .sign > button.resizeHandle.resizeHandleBottomLeft,
+#root .constructorFrame .sign > button.resizeHandle.resizeHandleBottomRight{
+  width:16px!important;
+  height:16px!important;
+  min-width:16px!important;
+  min-height:16px!important;
+  max-width:16px!important;
+  max-height:16px!important;
+}
+.constructorFrame .sign > button.resizeHandle.resizeHandleTopLeft{left:-8px!important;right:auto!important;top:-8px!important;bottom:auto!important}
+.constructorFrame .sign > button.resizeHandle.resizeHandleTopRight{left:auto!important;right:-8px!important;top:-8px!important;bottom:auto!important}
+.constructorFrame .sign > button.resizeHandle.resizeHandleBottomLeft{left:-8px!important;right:auto!important;top:auto!important;bottom:-8px!important}
+.constructorFrame .sign > button.resizeHandle.resizeHandleBottomRight{left:auto!important;right:-8px!important;top:auto!important;bottom:-8px!important}
+/* The live stage is reused for the PDF raster layer, so hide editor-only
+   controls before html2canvas captures it. */
+body.pdf-exporting .resizeHandle,
+.stage.stagePdfExporting .resizeHandle,
+.stage.stagePdfSignOnly .resizeHandle,
+.pdfPage .resizeHandle,
+.pdfPages .resizeHandle,
+.pdfSheet .resizeHandle{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
