@@ -54,8 +54,8 @@ body.pdf-exporting .stage{box-shadow:none!important;border-radius:0!important;ma
 /* The mobile cue is an unobtrusive scroll hint, not a second action button. */
 .mobileScrollCue{
   position:fixed!important;
-  left:174px!important;
-  bottom:68px!important;
+  left:var(--scroll-cue-left, 50vw)!important;
+  bottom:var(--scroll-cue-bottom, 24px)!important;
   z-index:45!important;
   display:flex!important;
   align-items:center!important;
@@ -110,7 +110,7 @@ body.pdf-exporting .stage{box-shadow:none!important;border-radius:0!important;ma
     position:fixed!important;
     left:50%!important;
     top:auto!important;
-    bottom:88px!important;
+    bottom:var(--scroll-cue-bottom, 24px)!important;
     width:24px!important;
     height:24px!important;
     min-width:24px!important;

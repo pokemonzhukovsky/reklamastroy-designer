@@ -973,6 +973,15 @@ function App() {
       const viewportHeight = scrollHost ? scrollHost.clientHeight : window.innerHeight;
       const hasMoreContent = scrollHeight > viewportHeight + 80;
       setShowMobileScrollCue(hasMoreContent && scrollTop < 80);
+      const frame = document.querySelector<HTMLElement>('.constructorFrame');
+      const cue = document.querySelector<HTMLElement>('.mobileScrollCue');
+      const anchor = document.querySelector<HTMLElement>('.workspace') || frame;
+      if (cue && anchor) {
+        const frameRect = (frame || anchor).getBoundingClientRect();
+        const anchorRect = anchor.getBoundingClientRect();
+        cue.style.setProperty('--scroll-cue-left', `${frameRect.left + frameRect.width / 2}px`);
+        cue.style.setProperty('--scroll-cue-bottom', `${Math.max(12, window.innerHeight - anchorRect.bottom + (isMobile ? 4 : 10))}px`);
+      }
     };
     const getScrollHost = () => window.matchMedia('(max-width: 768px)').matches
       ? document.querySelector<HTMLElement>('#root')
